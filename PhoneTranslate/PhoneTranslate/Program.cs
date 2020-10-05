@@ -25,13 +25,27 @@ namespace PhoneTranslate
 
            
 
-            //creates the list of slang to translation
-            List<WordObject> checkForList = new List<WordObject>();
-            Setup(ref checkForList);
-
-            //this is so I can breakpoint
-            int breakpoint = 1;
+           
         }
+
+        
+
+
+    }
+
+    public class WordReplace
+    {
+        //creates the list of slang to translation
+        List<WordObject> checkForList = new List<WordObject>();
+
+        public WordReplace()
+        {
+            Setup(ref checkForList);
+        }
+
+        
+        //this is so I can breakpoint
+        int breakpoint = 1;
 
         static void Setup(ref List<WordObject> checklist)
         {
@@ -39,21 +53,23 @@ namespace PhoneTranslate
             checklist.Add(new WordObject("ttfn", "tata for now"));
         }
 
-        static string WordMatch(string inputString, List<WordObject> checklist)
+        string WordMatch(string inputString)
         {
             string output = "";
             output = inputString;
 
-            for (int i = 0; i < checklist.Count(); i++)
+            
+
+            for (int i = 0; i < checkForList.Count(); i++)
             {
-                output.Replace(checklist[i].slangWord, checklist[i].translatedWord);
+                output.Replace(checkForList[i].slangWord, checkForList[i].translatedWord);
             }
-            
-            
+
+
             return output;
         }
 
-
+        
     }
 
     public struct WordObject
