@@ -30,7 +30,7 @@ namespace PhoneTranslate
             Setup(ref checkForList);
 
             //this is so I can breakpoint
-            int num = 1;
+            int breakpoint = 1;
         }
 
         static void Setup(ref List<WordObject> checklist)
