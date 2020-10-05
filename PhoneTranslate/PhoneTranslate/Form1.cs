@@ -16,5 +16,20 @@ namespace PhoneTranslate
         {
             InitializeComponent();
         }
+
+
+        private void TranslateBtn_Click(object sender, EventArgs e)
+        {
+            string text = inputField.Text.Trim();
+
+            if (text == "") { MessageBox.Show("Nothing entered"); }
+            if (text.Length > 150) { }
+
+
+            inputField.Text = "";
+            outputField.Text = text;
+
+            MessageBox.Show("Complete");
+        }
     }
 }
