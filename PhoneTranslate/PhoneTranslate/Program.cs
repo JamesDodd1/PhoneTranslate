@@ -4,10 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace PhoneTranslate
 {
+    
+
     static class Program
     {
+       
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,11 +24,18 @@ namespace PhoneTranslate
             Application.Run(new Form1());
 
             //this is a comment
-            WordObject[] checkForArray = new WordObject[3];
+
 
             List<WordObject> checkForList = new List<WordObject>();
-            checkForList.Add(new WordObject("idk", "I don't know"));
+            Setup(ref checkForList);
         }
+
+        static void Setup(ref List<WordObject> checklist)
+        {
+            checklist.Add(new WordObject("idk", "I don't know"));
+        }
+
+
     }
 
     public struct WordObject
