@@ -23,9 +23,9 @@ namespace PhoneTranslate
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-            //this is a comment
+           
 
-
+            //creates the list of slang to translation
             List<WordObject> checkForList = new List<WordObject>();
             Setup(ref checkForList);
 
@@ -39,13 +39,27 @@ namespace PhoneTranslate
             checklist.Add(new WordObject("ttfn", "tata for now"));
         }
 
+        static string WordMatch(string inputString, List<WordObject> checklist)
+        {
+            string output = "";
+            output = inputString;
+
+            for (int i = 0; i < checklist.Count(); i++)
+            {
+                output.Replace(checklist[i].slangWord, checklist[i].translatedWord);
+            }
+            
+            
+            return output;
+        }
+
 
     }
 
     public struct WordObject
     {
-        public string slangWord;
-        public string translatedWord;
+        public string slangWord { get; set; }
+        public string translatedWord { get; set; }
 
         public WordObject(string slang, string translated)
         {
