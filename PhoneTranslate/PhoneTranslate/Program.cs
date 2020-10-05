@@ -53,7 +53,7 @@ namespace PhoneTranslate
             checklist.Add(new WordObject("ttfn", "tata for now"));
         }
 
-        string WordMatch(string inputString)
+        public string WordMatch(string inputString)
         {
             string output = "";
             output = inputString;
@@ -62,7 +62,11 @@ namespace PhoneTranslate
 
             for (int i = 0; i < checkForList.Count(); i++)
             {
-                output.Replace(checkForList[i].slangWord, checkForList[i].translatedWord);
+                if (checkForList[i].slangWord == output)
+                {
+                    output = output.Replace(checkForList[i].slangWord, checkForList[i].translatedWord);
+                    break;
+                }
             }
 
 

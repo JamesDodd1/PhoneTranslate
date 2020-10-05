@@ -26,8 +26,10 @@ namespace PhoneTranslate
             if (text.Length > 150) { }
 
 
+            WordReplace wr = new WordReplace();
+
             inputField.Text = "";
-            outputField.Text = text;
+            outputField.Text = wr.WordMatch(text);
 
             MessageBox.Show("Complete");
         }
