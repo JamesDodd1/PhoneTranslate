@@ -19,7 +19,19 @@ namespace PhoneTranslate
             Application.Run(new Form1());
 
             //this is a comment
+            WordObject[] checkForArray = new WordObject[3];
+        }
+    }
 
+    public struct WordObject
+    {
+        public string slangWord;
+        public string translatedWord;
+
+        public WordObject(string slang, string translated)
+        {
+            slangWord = slang;
+            translatedWord = translated;
         }
     }
 }
