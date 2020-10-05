@@ -28,11 +28,15 @@ namespace PhoneTranslate
 
             List<WordObject> checkForList = new List<WordObject>();
             Setup(ref checkForList);
+
+            //this is so I can breakpoint
+            int num = 1;
         }
 
         static void Setup(ref List<WordObject> checklist)
         {
             checklist.Add(new WordObject("idk", "I don't know"));
+            checklist.Add(new WordObject("ttfn", "tata for now"));
         }
 
 
