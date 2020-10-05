@@ -20,6 +20,9 @@ namespace PhoneTranslate
 
             //this is a comment
             WordObject[] checkForArray = new WordObject[3];
+
+            List<WordObject> checkForList = new List<WordObject>();
+            checkForList.Add(new WordObject("idk", "I don't know"));
         }
     }
 
