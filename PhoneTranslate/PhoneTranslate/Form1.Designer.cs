@@ -28,28 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.inputText = new System.Windows.Forms.RichTextBox();
-            this.outputText = new System.Windows.Forms.RichTextBox();
+            this.inputField = new System.Windows.Forms.RichTextBox();
+            this.outputField = new System.Windows.Forms.RichTextBox();
             this.inputLbl = new System.Windows.Forms.Label();
             this.outputLbl = new System.Windows.Forms.Label();
             this.translateBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // inputText
+            // inputField
             // 
-            this.inputText.Location = new System.Drawing.Point(64, 55);
-            this.inputText.Name = "inputText";
-            this.inputText.Size = new System.Drawing.Size(100, 96);
-            this.inputText.TabIndex = 0;
-            this.inputText.Text = "";
+            this.inputField.Location = new System.Drawing.Point(64, 55);
+            this.inputField.Name = "inputField";
+            this.inputField.Size = new System.Drawing.Size(100, 96);
+            this.inputField.TabIndex = 0;
+            this.inputField.Text = "";
             // 
-            // outputText
+            // outputField
             // 
-            this.outputText.Location = new System.Drawing.Point(271, 55);
-            this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(100, 96);
-            this.outputText.TabIndex = 1;
-            this.outputText.Text = "";
+            this.outputField.BackColor = System.Drawing.Color.White;
+            this.outputField.Location = new System.Drawing.Point(271, 55);
+            this.outputField.Name = "outputField";
+            this.outputField.ReadOnly = true;
+            this.outputField.Size = new System.Drawing.Size(100, 96);
+            this.outputField.TabIndex = 1;
+            this.outputField.Text = "";
             // 
             // inputLbl
             // 
@@ -77,6 +79,7 @@
             this.translateBtn.TabIndex = 4;
             this.translateBtn.Text = "Translate";
             this.translateBtn.UseVisualStyleBackColor = true;
+            this.translateBtn.Click += new System.EventHandler(this.TranslateBtn_Click);
             // 
             // Form1
             // 
@@ -86,8 +89,8 @@
             this.Controls.Add(this.translateBtn);
             this.Controls.Add(this.outputLbl);
             this.Controls.Add(this.inputLbl);
-            this.Controls.Add(this.outputText);
-            this.Controls.Add(this.inputText);
+            this.Controls.Add(this.outputField);
+            this.Controls.Add(this.inputField);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -97,8 +100,8 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox inputText;
-        private System.Windows.Forms.RichTextBox outputText;
+        private System.Windows.Forms.RichTextBox inputField;
+        private System.Windows.Forms.RichTextBox outputField;
         private System.Windows.Forms.Label inputLbl;
         private System.Windows.Forms.Label outputLbl;
         private System.Windows.Forms.Button translateBtn;

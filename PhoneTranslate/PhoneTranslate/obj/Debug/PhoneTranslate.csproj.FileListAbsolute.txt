@@ -1,0 +1,10 @@
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\bin\Debug\PhoneTranslate.exe.config
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\bin\Debug\PhoneTranslate.exe
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\bin\Debug\PhoneTranslate.pdb
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.csprojAssemblyReference.cache
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.Form1.resources
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.Properties.Resources.resources
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.csproj.GenerateResource.cache
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.csproj.CoreCompileInputs.cache
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.exe
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.pdb
