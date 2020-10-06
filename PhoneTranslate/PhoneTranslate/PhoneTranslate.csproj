@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionary.cs" />
     <Compile Include="Translator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="files\Dictionary.txt" />
     <Content Include="files\Save 1.txt" />
     <Content Include="files\Save 2.txt" />
     <Content Include="files\Save 3.txt" />
