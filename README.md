@@ -6,7 +6,7 @@ Features to add and test
 - Swear filter (check box)
 - Swap sides (slang to norm, norm to slang)
 
-- Save and load (Temp or permanent) **DONE**
+- Save and load (Temp or permanent) - **DONE**
 - Togleable character limit (for twitter)
 
 - Dictionary of slang to normal
