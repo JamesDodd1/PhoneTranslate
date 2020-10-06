@@ -105,15 +105,32 @@ namespace PhoneTranslate
 
             for(int i = 0; i < tokenList.Count; i++)
             {
+                bool found = true;
                 //if it has a token
-               if(input.Contains(" " + tokenList[i].tokenValue))
+                while(found)
                 {
-                    //add location to potential list
+                    if (input.Contains(" " + tokenList[i].tokenValue))
+                    {
+                        //add location of first match to potential list
+                        int firstLocation = input.IndexOf((" " + tokenList[i].tokenValue));
+                        tokenList[i].potentialsList.Add(firstLocation);
+
+                        //remove already checked area from input
+                        input.Remove(0, (firstLocation + 2));
+
+                        //do till contains is false
+
+                    }
+                    else
+                    {
+                        found = false;
+                    }
                 }
+               
             }
         }
 
-        public void confirmPotentialMatches()
+        public void confirmPotentialMatches(string input)
         {
             //go through the list of the potential tokens, 
             //take the start point, find the string between that and the next empty space
@@ -129,9 +146,22 @@ namespace PhoneTranslate
                 {
                     //find next whitespace
                     //compare
+                    int nextwhitespace = input.IndexOf(" ", tokenList[i].potentialsList[j]);
+                    int gapcount = tokenList[i].potentialsList[j] - nextwhitespace;
+                    string check = input.Substring(tokenList[i].potentialsList[j], gapcount);
 
+                    for (int k = 0; k < tokenList[i].referenceList[k]; k++)
+                    {
+                        
+                        
+                        if(check.Contains(checkForList[tokenList[i].referenceList[k]].slangWord))
+                        {
+                            //you have a match. now figure out what to do with it
+                            //maybe make a change list
+                        }
+                    }
 
-                    // tokenList[i].potentialsList[j]
+                    
                 }
             }
         }
