@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,11 +9,11 @@ using System.Windows.Forms;
 
 namespace PhoneTranslate
 {
-    
+
 
     static class Program
     {
-       
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -21,7 +22,7 @@ namespace PhoneTranslate
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Translator());
 
         }
 
@@ -43,7 +44,7 @@ namespace PhoneTranslate
 
         }
 
-        
+
         //this is so I can breakpoint
         int breakpoint = 1;
 
@@ -60,7 +61,7 @@ namespace PhoneTranslate
             string output = "";
             output = inputString;
 
-            
+
 
             for (int i = 0; i < checkForList.Count(); i++)
             {
@@ -77,13 +78,13 @@ namespace PhoneTranslate
 
         public void createTokenList()
         {
-            for(int i = 0; i < checkForList.Count(); i++)
+            for (int i = 0; i < checkForList.Count(); i++)
             {
                 //if first letter of slang is not in the tokenValues list then create a new token.
-                if( !tokenValues.Contains(checkForList[i].slangWord[0]))
+                if (!tokenValues.Contains(checkForList[i].slangWord[0]))
                 {
                     tokenList.Add(new ReplaceToken(checkForList[i].slangWord[0], i));
-                    
+
                 }
             }
         }
@@ -142,3 +143,4 @@ namespace PhoneTranslate
     }
 
 }
+
