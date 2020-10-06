@@ -91,13 +91,26 @@ namespace PhoneTranslate
 
         //WIP
 
-        public void parseInput()
+        public void parseInput(string input)
         {
             //search through text for each token
             //if found append the start location found to the potentials list in the token struct
 
             // as you are looking for space then the token (otherwise you would get to many matches) you need to add a space at the start
             //this should be done on a temporary copy of the input set to all lower case
+
+            //adds a space on the left, I think.
+            input.PadLeft(1);
+            input = input.ToLower();
+
+            for(int i = 0; i < tokenList.Count; i++)
+            {
+                //if it has a token
+               if(input.Contains(" " + tokenList[i].tokenValue))
+                {
+                    //add location to potential list
+                }
+            }
         }
 
         public void confirmPotentialMatches()
@@ -109,6 +122,18 @@ namespace PhoneTranslate
 
             //replacements need to be done back to front otherwise the locations would get shifted 
             //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
+
+            for (int i = 0; i < tokenList.Count; i++)
+            {
+                for (int j = 0; j < tokenList[i].potentialsList.Count; j++)
+                {
+                    //find next whitespace
+                    //compare
+
+
+                    // tokenList[i].potentialsList[j]
+                }
+            }
         }
     }
 
