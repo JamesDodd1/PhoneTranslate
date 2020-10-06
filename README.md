@@ -1,7 +1,5 @@
 # PhoneTranslate
 
-This is the readme file
-
 Features to add and test
 
 - Replace slang
@@ -15,4 +13,3 @@ Features to add and test
 - Add, delete, edit slang dictionary
 
 - Tokens ignore cases, check against set to lower case, and outputs are correctly capitalised 
-
