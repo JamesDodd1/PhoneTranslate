@@ -13,6 +13,8 @@ namespace PhoneTranslate
     {
         private string filePath, fileType;
 
+        
+        /// <summary> Initalises a new instance of SaveLoad </summary>
         public SaveLoad() 
         {
             this.filePath = @".\..\..\files\";

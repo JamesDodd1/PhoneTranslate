@@ -36,6 +36,7 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.loadBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
+            this.selectFileCombo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // inputField
@@ -44,7 +45,7 @@
             this.inputField.Location = new System.Drawing.Point(74, 67);
             this.inputField.Name = "inputField";
             this.inputField.Size = new System.Drawing.Size(116, 117);
-            this.inputField.TabIndex = 0;
+            this.inputField.TabIndex = 1;
             this.inputField.Text = "";
             // 
             // outputField
@@ -54,7 +55,7 @@
             this.outputField.Name = "outputField";
             this.outputField.ReadOnly = true;
             this.outputField.Size = new System.Drawing.Size(116, 117);
-            this.outputField.TabIndex = 1;
+            this.outputField.TabIndex = 2;
             this.outputField.Text = "";
             // 
             // inputLbl
@@ -63,7 +64,7 @@
             this.inputLbl.Location = new System.Drawing.Point(74, 45);
             this.inputLbl.Name = "inputLbl";
             this.inputLbl.Size = new System.Drawing.Size(36, 16);
-            this.inputLbl.TabIndex = 2;
+            this.inputLbl.TabIndex = 0;
             this.inputLbl.Text = "Input";
             // 
             // outputLbl
@@ -72,7 +73,7 @@
             this.outputLbl.Location = new System.Drawing.Point(312, 45);
             this.outputLbl.Name = "outputLbl";
             this.outputLbl.Size = new System.Drawing.Size(47, 16);
-            this.outputLbl.TabIndex = 3;
+            this.outputLbl.TabIndex = 0;
             this.outputLbl.Text = "Output";
             // 
             // translateBtn
@@ -80,27 +81,27 @@
             this.translateBtn.Location = new System.Drawing.Point(78, 230);
             this.translateBtn.Name = "translateBtn";
             this.translateBtn.Size = new System.Drawing.Size(87, 29);
-            this.translateBtn.TabIndex = 4;
+            this.translateBtn.TabIndex = 3;
             this.translateBtn.Text = "Translate";
             this.translateBtn.UseVisualStyleBackColor = true;
             this.translateBtn.Click += new System.EventHandler(this.TranslateBtn_Click);
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(324, 230);
+            this.saveBtn.Location = new System.Drawing.Point(316, 230);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(87, 29);
-            this.saveBtn.TabIndex = 5;
+            this.saveBtn.TabIndex = 6;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(324, 265);
+            this.loadBtn.Location = new System.Drawing.Point(409, 230);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(87, 29);
-            this.loadBtn.TabIndex = 6;
+            this.loadBtn.TabIndex = 7;
             this.loadBtn.Text = "Load";
             this.loadBtn.UseVisualStyleBackColor = true;
             this.loadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
@@ -110,16 +111,33 @@
             this.clearBtn.Location = new System.Drawing.Point(171, 230);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(87, 29);
-            this.clearBtn.TabIndex = 7;
+            this.clearBtn.TabIndex = 4;
             this.clearBtn.Text = "Clear";
             this.clearBtn.UseVisualStyleBackColor = true;
             this.clearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
+            // 
+            // selectFileCombo
+            // 
+            this.selectFileCombo.FormattingEnabled = true;
+            this.selectFileCombo.Items.AddRange(new object[] {
+            "Save 1",
+            "Save 2",
+            "Save 3",
+            "Save 4",
+            "Save 5"});
+            this.selectFileCombo.Location = new System.Drawing.Point(316, 266);
+            this.selectFileCombo.Name = "selectFileCombo";
+            this.selectFileCombo.Size = new System.Drawing.Size(180, 24);
+            this.selectFileCombo.TabIndex = 8;
+            this.selectFileCombo.Text = "Select File";
+            this.selectFileCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SelectFileCombo_KeyPress);
             // 
             // Translator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.selectFileCombo);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.loadBtn);
             this.Controls.Add(this.saveBtn);
@@ -146,6 +164,7 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button loadBtn;
         private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.ComboBox selectFileCombo;
     }
 }
 

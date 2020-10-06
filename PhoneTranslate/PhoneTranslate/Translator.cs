@@ -14,9 +14,13 @@ namespace PhoneTranslate
     {
         private SaveLoad sl = new SaveLoad();
 
+
+        /// <summary> Initialises a new instance of Translator </summary>
         public Translator()
         {
             InitializeComponent();
+
+            new Dictionary().Read();
         }
 
 
@@ -49,7 +53,10 @@ namespace PhoneTranslate
         /// <summary> Saves text into a file </summary>
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            string fileName = @"Save";
+            string fileName = SelectedFile();
+            if (fileName == "" || fileName == null)
+                return;
+
             DisplayText dt = new DisplayText
             {
                 Input = inputField.Text,
@@ -67,7 +74,10 @@ namespace PhoneTranslate
         /// <summary> Loads text from a file </summary>
         private void LoadBtn_Click(object sender, EventArgs e)
         {
-            string fileName = @"Save";
+            string fileName = SelectedFile();
+            if (fileName == "" || fileName == null) 
+                return;
+
             DisplayText dt = this.sl.Load(fileName);
 
             if (dt != null)
@@ -78,9 +88,32 @@ namespace PhoneTranslate
                 MessageBox.Show("Loaded");
             }
             else
-            {
                 MessageBox.Show("Fail");
+        }
+
+
+        /// <summary> Gets the name of the file selected </summary>
+        private string SelectedFile()
+        {
+            string file = null;
+
+            try
+            {
+                file = selectFileCombo.SelectedItem.ToString();
             }
+            catch (System.NullReferenceException)
+            {
+                MessageBox.Show("No file selected");
+            }
+
+
+            return file;
+        }
+
+
+        private void SelectFileCombo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 

@@ -83,7 +83,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="files\Save.txt" />
+    <Content Include="files\Save 1.txt" />
+    <Content Include="files\Save 2.txt" />
+    <Content Include="files\Save 3.txt" />
+    <Content Include="files\Save 4.txt" />
+    <Content Include="files\Save 5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
