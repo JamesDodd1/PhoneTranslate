@@ -19,8 +19,6 @@ namespace PhoneTranslate
         public Translator()
         {
             InitializeComponent();
-
-            Console.WriteLine(new Dictionary().Edit("a", "a", "a", "a", "a", "a"));
         }
 
 
