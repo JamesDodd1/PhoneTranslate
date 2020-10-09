@@ -123,7 +123,7 @@ namespace PhoneTranslate
             string final = replaceMatches(inputstring, ref replaceList);
 
             //temp
-            return inputstring;
+            return final;
         }
 
 
@@ -218,10 +218,13 @@ namespace PhoneTranslate
 
         public string replaceMatches(string input, ref List<ConfirmToken>  list)
         {
-            for(int i = (list.Count -1); i <=0; i--)
+            for(int i = (list.Count - 1); i <=0; i--)
             {
-                //do the replacing
+                //do the replacing. you start at -1 from count as that is the end val 
+                input = input.Replace(checkForList[list[i].checkListLocation].slangWord, checkForList[list[i].checkListLocation].translatedWord);
+                //list[i].locationValue
             }
+
             return input;
         }
     }
