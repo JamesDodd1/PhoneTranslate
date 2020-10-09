@@ -144,7 +144,7 @@ namespace PhoneTranslate
             //this should be done on a temporary copy of the input set to all lower case
 
             //adds a space on the left, I think.
-            input.PadLeft(1);
+            input = "^ " + input;
             input = input.ToLower();
 
             for (int i = 0; i < tokenList.Count; i++)
@@ -160,7 +160,7 @@ namespace PhoneTranslate
                         tokenList[i].potentialsList.Add(firstLocation);
 
                         //remove already checked area from input
-                        input.Remove(0, (firstLocation + 2));
+                        input = input.Remove(0, (firstLocation + 2));
 
                         //do till contains is false
 
@@ -187,7 +187,7 @@ namespace PhoneTranslate
 
             //replacements need to be done back to front otherwise the locations would get shifted 
             //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
-
+            input = (/*"^ " +*/ input + " ^");
             for (int i = 0; i < tokenList.Count; i++)
             {
                 for (int j = 0; j < tokenList[i].potentialsList.Count; j++)
@@ -195,10 +195,10 @@ namespace PhoneTranslate
                     //find next whitespace
                     //compare
                     int nextwhitespace = input.IndexOf(" ", tokenList[i].potentialsList[j]);
-                    int gapcount = tokenList[i].potentialsList[j] - nextwhitespace;
-                    string check = input.Substring(tokenList[i].potentialsList[j], gapcount);
+                    int gapcount =  nextwhitespace - (tokenList[i].potentialsList[j] - 1);
+                    string check = input.Substring((tokenList[i].potentialsList[j] -1), gapcount);
 
-                    for (int k = 0; k < tokenList[i].referenceList[k]; k++)
+                    for (int k = 0; k <= tokenList[i].referenceList[k]; k++)
                     {
 
 
@@ -218,7 +218,7 @@ namespace PhoneTranslate
 
         public string replaceMatches(string input, ref List<ConfirmToken>  list)
         {
-            for(int i = (list.Count - 1); i <=0; i--)
+            for(int i = (list.Count - 1); i >=0; i--)
             {
                 //do the replacing. you start at -1 from count as that is the end val 
                 input = input.Replace(checkForList[list[i].checkListLocation].slangWord, checkForList[list[i].checkListLocation].translatedWord);

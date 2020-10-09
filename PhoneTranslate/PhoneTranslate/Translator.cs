@@ -32,7 +32,8 @@ namespace PhoneTranslate
             WordReplace wr = new WordReplace();
 
             inputField.Text = "";
-            outputField.Text = wr.WordMatch(text);
+            //outputField.Text = wr.WordMatch(text);
+            outputField.Text = wr.RunReplace(text);
 
             MessageBox.Show("Complete");
         }
