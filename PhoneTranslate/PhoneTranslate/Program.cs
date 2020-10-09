@@ -194,6 +194,8 @@ namespace PhoneTranslate
                 {
                     //find next whitespace
                     //compare
+
+                    //the -1 is due to the shift in the string because strings now don't let you just put a space at the start or end.
                     int nextwhitespace = input.IndexOf(" ", tokenList[i].potentialsList[j]);
                     int gapcount =  nextwhitespace - (tokenList[i].potentialsList[j] - 1);
                     string check = input.Substring((tokenList[i].potentialsList[j] -1), gapcount);
@@ -204,8 +206,7 @@ namespace PhoneTranslate
 
                         if (check.Contains(checkForList[tokenList[i].referenceList[k]].slangWord))
                         {
-                            //you have a match. now figure out what to do with it
-                            //maybe make a change list
+                            //you have a match. now you make a confirm token and put it in the change list
                             confirms.Add(new ConfirmToken(tokenList[i].potentialsList[j], tokenList[i].referenceList[k]));
                             break;
                         }
@@ -222,7 +223,7 @@ namespace PhoneTranslate
             {
                 //do the replacing. you start at -1 from count as that is the end val 
                 input = input.Replace(checkForList[list[i].checkListLocation].slangWord, checkForList[list[i].checkListLocation].translatedWord);
-                //list[i].locationValue
+                
             }
 
             return input;
