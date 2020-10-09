@@ -144,7 +144,7 @@ namespace PhoneTranslate
             //this should be done on a temporary copy of the input set to all lower case
 
             //adds a space on the left, I think.
-            input = "^ " + input;
+            input = input.PadLeft(input.Count() + 1);
             input = input.ToLower();
 
             for (int i = 0; i < tokenList.Count; i++)
@@ -195,10 +195,10 @@ namespace PhoneTranslate
                     //find next whitespace
                     //compare
 
-                    //the -1 is due to the shift in the string because strings now don't let you just put a space at the start or end.
+                    
                     int nextwhitespace = input.IndexOf(" ", tokenList[i].potentialsList[j]);
                     int gapcount =  nextwhitespace - (tokenList[i].potentialsList[j] - 1);
-                    string check = input.Substring((tokenList[i].potentialsList[j] -1), gapcount);
+                    string check = input.Substring((tokenList[i].potentialsList[j]), gapcount);
 
                     for (int k = 0; k <= tokenList[i].referenceList[k]; k++)
                     {
