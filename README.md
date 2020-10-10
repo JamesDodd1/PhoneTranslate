@@ -3,7 +3,7 @@
 Features to add and test
 
 ### Transaltion ###
-- Replace slang
+- Replace slang - **ADDED**
 - Swear filter (check box)
 - Swap sides (slang to norm, norm to slang)
 
