@@ -35,7 +35,8 @@ namespace PhoneTranslate
 
             inputField.Text = "";
             //outputField.Text = wr.WordMatch(text);
-            outputField.Text = wr.RunReplace(text);
+            outputField.Text = wr.RunReplace(text,SwearFilter.Checked);
+            
 
             MessageBox.Show("Complete");
         }
@@ -113,6 +114,11 @@ namespace PhoneTranslate
         private void SelectFileCombo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 

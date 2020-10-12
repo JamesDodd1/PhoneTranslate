@@ -37,6 +37,7 @@
             this.loadBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
             this.selectFileCombo = new System.Windows.Forms.ComboBox();
+            this.SwearFilter = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // inputField
@@ -132,11 +133,23 @@
             this.selectFileCombo.Text = "Select File";
             this.selectFileCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SelectFileCombo_KeyPress);
             // 
+            // SwearFilter
+            // 
+            this.SwearFilter.AutoSize = true;
+            this.SwearFilter.Location = new System.Drawing.Point(78, 272);
+            this.SwearFilter.Name = "SwearFilter";
+            this.SwearFilter.Size = new System.Drawing.Size(96, 20);
+            this.SwearFilter.TabIndex = 9;
+            this.SwearFilter.Text = "Swear Filter";
+            this.SwearFilter.UseVisualStyleBackColor = true;
+            this.SwearFilter.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Translator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.SwearFilter);
             this.Controls.Add(this.selectFileCombo);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.loadBtn);
@@ -165,6 +178,7 @@
         private System.Windows.Forms.Button loadBtn;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.ComboBox selectFileCombo;
+        private System.Windows.Forms.CheckBox SwearFilter;
     }
 }
 

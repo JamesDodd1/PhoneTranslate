@@ -112,7 +112,7 @@ namespace PhoneTranslate
        
         //newTest
 
-        public string RunReplace(string inputstring)
+        public string RunReplace(string inputstring, bool swearFilter)
         {
             //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
             createTokenList(ref tokenList, ref tokenValues, checkForList);
@@ -126,9 +126,8 @@ namespace PhoneTranslate
             //replace the matches (going from end to start)
             string final = replaceMatches(inputstring, ref replaceList, checkForList);
 
-            bool swearfilter = true;
-
-            if (swearfilter)
+            
+            if (swearFilter)
             {
                 replaceList.Clear();
 
