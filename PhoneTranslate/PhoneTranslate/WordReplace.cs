@@ -91,6 +91,10 @@ namespace PhoneTranslate
                     values = (values + wordList[i].SlangWord[0]);
 
                 }
+                else
+                {
+                    tokens[values.IndexOf(wordList[i].SlangWord[0])].referenceList.Add(i);
+                }
             }
         }
 
