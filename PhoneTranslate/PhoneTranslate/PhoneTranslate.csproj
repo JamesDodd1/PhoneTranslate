@@ -47,7 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dictionary.cs" />
+    <Compile Include="Dictionary\Crud.cs" />
+    <Compile Include="Dictionary\Dictionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionary\Dictionary.Designer.cs">
+      <DependentUpon>Dictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionary\Cell.cs" />
+    <Compile Include="Dictionary\Row.cs" />
     <Compile Include="Translator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +65,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveLoad.cs" />
+    <EmbeddedResource Include="Dictionary\Dictionary.resx">
+      <DependentUpon>Dictionary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Translator.resx">
       <DependentUpon>Translator.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,12 +95,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="files\Dictionary.txt" />
-    <Content Include="files\Save 1.txt" />
-    <Content Include="files\Save 2.txt" />
-    <Content Include="files\Save 3.txt" />
-    <Content Include="files\Save 4.txt" />
-    <Content Include="files\Save 5.txt" />
+    <Content Include="Files\Dictionary.txt" />
+    <Content Include="Files\Save 1.txt" />
+    <Content Include="Files\Save 2.txt" />
+    <Content Include="Files\Save 3.txt" />
+    <Content Include="Files\Save 4.txt" />
+    <Content Include="Files\Save 5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

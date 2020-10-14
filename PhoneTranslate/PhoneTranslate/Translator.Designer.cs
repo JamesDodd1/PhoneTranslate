@@ -37,6 +37,7 @@
             this.loadBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
             this.selectFileCombo = new System.Windows.Forms.ComboBox();
+            this.dictionaryBtn = new System.Windows.Forms.Button();
             this.SwearFilter = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -79,9 +80,9 @@
             // 
             // translateBtn
             // 
-            this.translateBtn.Location = new System.Drawing.Point(78, 230);
+            this.translateBtn.Location = new System.Drawing.Point(74, 230);
             this.translateBtn.Name = "translateBtn";
-            this.translateBtn.Size = new System.Drawing.Size(87, 29);
+            this.translateBtn.Size = new System.Drawing.Size(100, 30);
             this.translateBtn.TabIndex = 3;
             this.translateBtn.Text = "Translate";
             this.translateBtn.UseVisualStyleBackColor = true;
@@ -91,7 +92,7 @@
             // 
             this.saveBtn.Location = new System.Drawing.Point(316, 230);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(87, 29);
+            this.saveBtn.Size = new System.Drawing.Size(100, 30);
             this.saveBtn.TabIndex = 6;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -99,9 +100,9 @@
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(409, 230);
+            this.loadBtn.Location = new System.Drawing.Point(422, 230);
             this.loadBtn.Name = "loadBtn";
-            this.loadBtn.Size = new System.Drawing.Size(87, 29);
+            this.loadBtn.Size = new System.Drawing.Size(100, 30);
             this.loadBtn.TabIndex = 7;
             this.loadBtn.Text = "Load";
             this.loadBtn.UseVisualStyleBackColor = true;
@@ -109,9 +110,9 @@
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(171, 230);
+            this.clearBtn.Location = new System.Drawing.Point(180, 230);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(87, 29);
+            this.clearBtn.Size = new System.Drawing.Size(100, 30);
             this.clearBtn.TabIndex = 4;
             this.clearBtn.Text = "Clear";
             this.clearBtn.UseVisualStyleBackColor = true;
@@ -128,11 +129,21 @@
             "Save 5"});
             this.selectFileCombo.Location = new System.Drawing.Point(316, 266);
             this.selectFileCombo.Name = "selectFileCombo";
-            this.selectFileCombo.Size = new System.Drawing.Size(180, 24);
+            this.selectFileCombo.Size = new System.Drawing.Size(206, 24);
             this.selectFileCombo.TabIndex = 8;
             this.selectFileCombo.Text = "Select File";
             this.selectFileCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SelectFileCombo_KeyPress);
             // 
+            // dictionaryBtn
+            // 
+            this.dictionaryBtn.Location = new System.Drawing.Point(78, 314);
+            this.dictionaryBtn.Name = "dictionaryBtn";
+            this.dictionaryBtn.Size = new System.Drawing.Size(100, 30);
+            this.dictionaryBtn.TabIndex = 9;
+            this.dictionaryBtn.Text = "Dictionary";
+            this.dictionaryBtn.UseVisualStyleBackColor = true;
+            this.dictionaryBtn.Click += new System.EventHandler(this.DictionaryBtn_Click);
+            //
             // SwearFilter
             // 
             this.SwearFilter.AutoSize = true;
@@ -149,6 +160,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.dictionaryBtn);
             this.Controls.Add(this.SwearFilter);
             this.Controls.Add(this.selectFileCombo);
             this.Controls.Add(this.clearBtn);
@@ -178,6 +190,7 @@
         private System.Windows.Forms.Button loadBtn;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.ComboBox selectFileCombo;
+        private System.Windows.Forms.Button dictionaryBtn;
         private System.Windows.Forms.CheckBox SwearFilter;
     }
 }

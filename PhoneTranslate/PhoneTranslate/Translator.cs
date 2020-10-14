@@ -19,6 +19,8 @@ namespace PhoneTranslate
         public Translator()
         {
             InitializeComponent();
+
+            new Dictionary.Dictionary().ShowDialog();
         }
 
 
@@ -111,11 +113,22 @@ namespace PhoneTranslate
         }
 
 
+        /// <summary> Disables text from being typed into ComboBox </summary>
         private void SelectFileCombo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
+
+        /// <summary> Display Dictionary form when Button clicked </summary>
+        private void DictionaryBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Dictionary.Dictionary().ShowDialog();
+            this.Show();
+        }
+        
+            
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             

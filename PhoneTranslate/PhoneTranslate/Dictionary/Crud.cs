@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhoneTranslate
+namespace PhoneTranslate.Dictionary
 {
     /// <summary> Dictionary CRUD class </summary>
-    class Dictionary
+    class Crud
     {
         private string file, fileName;
 
 
-        /// <summary> Initalises a new instance of Dictionary </summary>
-        public Dictionary() 
+        /// <summary> Initalises a new instance of Crud </summary>
+        public Crud() 
         {
             this.fileName = @"Dictionary";
             this.file = @".\..\..\files\" + fileName + @".txt";
