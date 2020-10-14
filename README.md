@@ -17,4 +17,4 @@ Features to add and test
 ### Dictionary ###
 - Dictionary file of slang to normal - **ADDED**
 - Add, delete, edit slang dictionary file - **ADDED**
-- Method to change dictionary file on program **PARTIALLY ADDED**
+- Method to change dictionary file on program - **PARTIALLY ADDED**
