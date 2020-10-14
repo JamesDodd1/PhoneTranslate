@@ -12,6 +12,7 @@ namespace PhoneTranslate.Dictionary
 {
     public partial class Dictionary : Form
     {
+        private Crud dictionaryFile;
         private List<WordObject> dictionary;
         private List<Row> rows;
 
@@ -21,7 +22,8 @@ namespace PhoneTranslate.Dictionary
         {
             InitializeComponent();
 
-            this.dictionary = new Crud().Read();
+            this.dictionaryFile = DictionaryFactory.Create("Dictionary");
+            this.dictionary = dictionaryFile.Read();
             this.rows = new List<Row>();
 
             Display();
@@ -54,7 +56,7 @@ namespace PhoneTranslate.Dictionary
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
             // Reset displayed dictionary list
-            this.dictionary = new Crud().Read();
+            this.dictionary = dictionaryFile.Read();
             this.rows = new List<Row>();
             dictionaryPanel.Controls.Clear();
             dictionaryPanel.Controls.Add(button1); // Temp to display scrolling

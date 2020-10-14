@@ -102,6 +102,7 @@
     <Content Include="Files\Save 3.txt" />
     <Content Include="Files\Save 4.txt" />
     <Content Include="Files\Save 5.txt" />
+    <Content Include="Files\SwearWords.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

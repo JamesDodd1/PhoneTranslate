@@ -38,7 +38,7 @@
             this.clearBtn = new System.Windows.Forms.Button();
             this.selectFileCombo = new System.Windows.Forms.ComboBox();
             this.dictionaryBtn = new System.Windows.Forms.Button();
-            this.SwearFilter = new System.Windows.Forms.CheckBox();
+            this.swearFilter = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // inputField
@@ -144,16 +144,16 @@
             this.dictionaryBtn.UseVisualStyleBackColor = true;
             this.dictionaryBtn.Click += new System.EventHandler(this.DictionaryBtn_Click);
             // 
-            // SwearFilter
+            // swearFilter
             // 
-            this.SwearFilter.AutoSize = true;
-            this.SwearFilter.Location = new System.Drawing.Point(78, 272);
-            this.SwearFilter.Name = "SwearFilter";
-            this.SwearFilter.Size = new System.Drawing.Size(96, 20);
-            this.SwearFilter.TabIndex = 9;
-            this.SwearFilter.Text = "Swear Filter";
-            this.SwearFilter.UseVisualStyleBackColor = true;
-            this.SwearFilter.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.swearFilter.AutoSize = true;
+            this.swearFilter.Location = new System.Drawing.Point(78, 272);
+            this.swearFilter.Name = "swearFilter";
+            this.swearFilter.Size = new System.Drawing.Size(96, 20);
+            this.swearFilter.TabIndex = 9;
+            this.swearFilter.Text = "Swear Filter";
+            this.swearFilter.UseVisualStyleBackColor = true;
+            this.swearFilter.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Translator
             // 
@@ -161,7 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.dictionaryBtn);
-            this.Controls.Add(this.SwearFilter);
+            this.Controls.Add(this.swearFilter);
             this.Controls.Add(this.selectFileCombo);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.loadBtn);
@@ -191,7 +191,7 @@
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.ComboBox selectFileCombo;
         private System.Windows.Forms.Button dictionaryBtn;
-        private System.Windows.Forms.CheckBox SwearFilter;
+        private System.Windows.Forms.CheckBox swearFilter;
     }
 }
 

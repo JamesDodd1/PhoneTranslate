@@ -35,7 +35,7 @@ namespace PhoneTranslate
 
             inputField.Text = "";
             //outputField.Text = wr.WordMatch(text);
-            outputField.Text = wr.RunReplace(text,SwearFilter.Checked);
+            outputField.Text = wr.RunReplace(text, swearFilter.Checked);
             
 
             MessageBox.Show("Complete");

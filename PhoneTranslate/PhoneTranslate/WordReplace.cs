@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneTranslate.Dictionary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace PhoneTranslate
     {
         //creates the list of slang to translation
         List<WordObject> checkForList = new List<WordObject>();
-        List<WordObject> SwearList = new List<WordObject>();
+        List<WordObject> swearList = new List<WordObject>();
 
         List<PotentialToken> tokenList = new List<PotentialToken>();
         List<PotentialToken> swearTokenList = new List<PotentialToken>();
@@ -28,18 +29,24 @@ namespace PhoneTranslate
         //this is so I can breakpoint
         int breakpoint = 1;
 
+
         /// <summary>
         /// Adds all known slang to the CheckForList, then Runs CreateTokenList
         /// </summary>
         public void Setup()
         {
-            checkForList.Add(new WordObject("idk", "I don't know"));
-            checkForList.Add(new WordObject("ttfn", "tata for now"));
+            Crud dictionaryFile = DictionaryFactory.Create("Dictionary");
+            checkForList = dictionaryFile.Read();
+            //checkForList.Add(new WordObject("idk", "I don't know"));
+            //checkForList.Add(new WordObject("ttfn", "tata for now"));
 
-            SwearList.Add(new WordObject("damn", "****"));
+            Crud swearFile = DictionaryFactory.Create("SwearWords");
+            swearList = swearFile.Read();
+            //swearList.Add(new WordObject("damn", "****"));
 
-            createTokenList(ref tokenList, ref tokenValues, checkForList);
+            CreateTokenList(ref tokenList, ref tokenValues, checkForList);
         }
+
 
         /// <summary> 
         ///this is the origional test function. It works only if the entire input is a pieice of slang
@@ -53,9 +60,9 @@ namespace PhoneTranslate
 
             for (int i = 0; i < checkForList.Count(); i++)
             {
-                if (checkForList[i].slangWord == output)
+                if (checkForList[i].SlangWord == output)
                 {
-                    output = output.Replace(checkForList[i].slangWord, checkForList[i].translatedWord);
+                    output = output.Replace(checkForList[i].SlangWord, checkForList[i].TranslatedWord);
                     break;
                 }
             }
@@ -64,11 +71,12 @@ namespace PhoneTranslate
             return output;
         }
 
+
         /// <summary>
         /// creates a list of Tokens to search through the text for. 
         /// One per letter that is used, and lists the slang relevant to the token inside the token.
         /// </summary>
-        public void createTokenList(ref List<PotentialToken> tokens, ref string values, List<WordObject> wordList)
+        public void CreateTokenList(ref List<PotentialToken> tokens, ref string values, List<WordObject> wordList)
         {
             //this is so you can run it again after startup
             tokens.Clear();
@@ -77,10 +85,10 @@ namespace PhoneTranslate
             for (int i = 0; i < wordList.Count(); i++)
             {
                 //if first letter of slang is not in the tokenValues list then create a new token.
-                if (!values.Contains(wordList[i].slangWord[0]))
+                if (!values.Contains(wordList[i].SlangWord[0]))
                 {
-                    tokens.Add(new PotentialToken(wordList[i].slangWord[0], i));
-                    values = (values + wordList[i].slangWord[0]);
+                    tokens.Add(new PotentialToken(wordList[i].SlangWord[0], i));
+                    values = (values + wordList[i].SlangWord[0]);
 
                 }
             }
@@ -88,30 +96,29 @@ namespace PhoneTranslate
 
 
         //newTest
-
         public string RunReplace(string inputstring, bool swearFilter)
         {
             //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
-            createTokenList(ref tokenList, ref tokenValues, checkForList);
+            CreateTokenList(ref tokenList, ref tokenValues, checkForList);
 
             List<ConfirmToken> replaceList = new List<ConfirmToken>();
 
             //parse the text 
-            parseInput(inputstring, ref tokenList);
+            ParseInput(inputstring, ref tokenList);
             //find the ones that need replacing
-            confirmPotentialMatches(inputstring, tokenList, ref replaceList, checkForList);
+            ConfirmPotentialMatches(inputstring, tokenList, ref replaceList, checkForList);
             //replace the matches (going from end to start)
-            string final = replaceMatches(inputstring, ref replaceList, checkForList);
+            string final = ReplaceMatches(inputstring, ref replaceList, checkForList);
 
 
             if (swearFilter)
             {
                 replaceList.Clear();
 
-                createTokenList(ref swearTokenList, ref swearTokenValues, SwearList);
-                parseInput(final, ref swearTokenList);
-                confirmPotentialMatches(final, swearTokenList, ref replaceList, SwearList);
-                final = replaceMatches(final, ref replaceList, SwearList);
+                CreateTokenList(ref swearTokenList, ref swearTokenValues, swearList);
+                ParseInput(final, ref swearTokenList);
+                ConfirmPotentialMatches(final, swearTokenList, ref replaceList, swearList);
+                final = ReplaceMatches(final, ref replaceList, swearList);
             }
 
             //temp
@@ -119,15 +126,12 @@ namespace PhoneTranslate
         }
 
 
-
-
-
         /// <summary>
         /// Adds a space to the start of the input (a copy) and sets to lower case.
         /// Adds to the Potentials List in PotentialsToken all the possible matches in the text.
         /// </summary>
         /// <param name="input"></param>
-        public void parseInput(string input, ref List<PotentialToken> tkl)
+        public void ParseInput(string input, ref List<PotentialToken> tkl)
         {
             //search through text for each token
             //if found append the start location found to the potentials list in the token struct
@@ -147,10 +151,10 @@ namespace PhoneTranslate
                 while (found)
                 {
 
-                    if (input.Contains(" " + tkl[i].tokenValue))
+                    if (input.Contains(" " + tkl[i].TokenValue))
                     {
                         //add location of first match to potential list
-                        int firstLocation = input.IndexOf((" " + tkl[i].tokenValue));
+                        int firstLocation = input.IndexOf((" " + tkl[i].TokenValue));
                         tkl[i].potentialsList.Add(firstLocation + shunt);
 
                         //remove already checked area from input
@@ -168,11 +172,12 @@ namespace PhoneTranslate
             }
         }
 
+
         /// <summary>
         /// Checks each PotentialsList in ReplaceToken to see if it exists in CheckForList.
         /// </summary>
         /// <param name="input"></param>
-        public void confirmPotentialMatches(string input, List<PotentialToken> tkl, ref List<ConfirmToken> confirms, List<WordObject> wordList)
+        public void ConfirmPotentialMatches(string input, List<PotentialToken> tkl, ref List<ConfirmToken> confirms, List<WordObject> wordList)
         {
             //go through the list of the potential tokens, 
             //take the start point, find the string between that and the next empty space
@@ -197,27 +202,24 @@ namespace PhoneTranslate
                     //what does this doooooo!?
                     for (int k = 0; k < tkl[i].referenceList.Count; k++)
                     {
-
-
-                        if (check.Contains(wordList[tkl[i].referenceList[k]].slangWord))
+                        if (check.Contains(wordList[tkl[i].referenceList[k]].SlangWord))
                         {
                             //you have a match. now you make a confirm token and put it in the change list
                             confirms.Add(new ConfirmToken(tkl[i].potentialsList[j], tkl[i].referenceList[k]));
                             break;
                         }
                     }
-
-
                 }
             }
         }
 
-        public string replaceMatches(string input, ref List<ConfirmToken> list, List<WordObject> slanglist)
+
+        public string ReplaceMatches(string input, ref List<ConfirmToken> list, List<WordObject> slanglist)
         {
             for (int i = (list.Count - 1); i >= 0; i--)
             {
                 //do the replacing. you start at -1 from count as that is the end val 
-                input = input.Replace(slanglist[list[i].checkListLocation].slangWord, slanglist[list[i].checkListLocation].translatedWord);
+                input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
 
             }
 
@@ -225,21 +227,23 @@ namespace PhoneTranslate
         }
     }
 
+
     public struct WordObject
     {
-        public string slangWord { get; set; }
-        public string translatedWord { get; set; }
+        public string SlangWord { get; set; }
+        public string TranslatedWord { get; set; }
 
         public WordObject(string slang, string translated)
         {
-            slangWord = slang;
-            translatedWord = translated;
+            SlangWord = slang;
+            TranslatedWord = translated;
         }
     }
 
+
     public struct PotentialToken
     {
-        public char tokenValue { get; set; }
+        public char TokenValue { get; set; }
         public List<int> referenceList;
 
         //every time you find a potential by matching the token, you put the start location in this list
@@ -250,20 +254,21 @@ namespace PhoneTranslate
             referenceList = new List<int>();
             potentialsList = new List<int>();
 
-            tokenValue = tkV;
+            TokenValue = tkV;
             referenceList.Add(listLocation);
         }
     }
 
+
     public struct ConfirmToken
     {
-        public int locationValue { get; set; }
-        public int checkListLocation { get; set; }
+        public int LocationValue { get; set; }
+        public int CheckListLocation { get; set; }
 
         public ConfirmToken(int location, int listval)
         {
-            locationValue = location;
-            checkListLocation = listval;
+            LocationValue = location;
+            CheckListLocation = listval;
         }
     }
 }

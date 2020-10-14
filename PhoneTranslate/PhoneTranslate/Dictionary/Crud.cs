@@ -8,16 +8,41 @@ using System.Windows.Forms;
 
 namespace PhoneTranslate.Dictionary
 {
+    public class DictionaryFactory
+    {
+        public static Crud Create(string type)
+        {
+            Crud file = null;
+
+            switch (type)
+            {
+                case "Dictionary":
+                    file = new Crud(@"Dictionary");
+                    break;
+
+                case "SwearWords":
+                    file = new Crud(@"SwearWords");
+                    break;
+
+                default:
+                    break;
+            }
+
+            return file;
+        }
+    }
+
+
     /// <summary> Dictionary CRUD class </summary>
-    class Crud
+    public class Crud
     {
         private string file, fileName;
 
 
         /// <summary> Initalises a new instance of Crud </summary>
-        public Crud() 
+        public Crud(string file) 
         {
-            this.fileName = @"Dictionary";
+            this.fileName = file;
             this.file = @".\..\..\files\" + fileName + @".txt";
         }
 
@@ -26,15 +51,15 @@ namespace PhoneTranslate.Dictionary
         /// <returns> A list containing all dictionary translations </returns>
         public List<WordObject> Read()
         {
-            List<WordObject> disctionary = null;
+            List<WordObject> dictionary = null;
 
             try
             {
                 // Reads from dictionary
                 using (StreamReader reader = new StreamReader(this.file, Encoding.UTF8))
                 {
-                    disctionary = new List<WordObject>();
-                    string line, swear;
+                    dictionary = new List<WordObject>();
+                    string line;
 
                     // Retrieves all translations
                     while ((line = reader.ReadLine()) != null)
@@ -43,12 +68,11 @@ namespace PhoneTranslate.Dictionary
                         if (line == "")
                             continue;
 
-                        disctionary.Add(new WordObject
+                        dictionary.Add(new WordObject
                         {
-                            slangWord = line,
-                            translatedWord = reader.ReadLine(),
+                            SlangWord = line,
+                            TranslatedWord = reader.ReadLine(),
                         });
-                        swear = reader.ReadLine(); // Will add to word object
                     }
                 }
             }
@@ -61,23 +85,21 @@ namespace PhoneTranslate.Dictionary
                 Console.WriteLine("{0} file cannot be found", this.fileName);
             }
 
-            return disctionary;
+            return dictionary;
         }
 
 
-        public bool Add(string slang, string normal) => Add(slang, normal, normal); // Temp until swear added
         /// <summary> Adds a new translation into the dictionary </summary>
         /// <returns> true if successful, otherwise false </returns>
-        public bool Add(string slang, string normal, string swear)
+        public bool Add(string word, string translated)
         {
             try
             {
                 // Append dictionary
                 using (StreamWriter writer = new StreamWriter(this.file, true))
                 {
-                    writer.WriteLine(slang);
-                    writer.WriteLine(normal);
-                    writer.WriteLine(swear);
+                    writer.WriteLine(word);
+                    writer.WriteLine(translated);
                     writer.WriteLine(); // Spacing line
                 }
 
@@ -97,14 +119,12 @@ namespace PhoneTranslate.Dictionary
         }
 
         
-        public bool Edit(string slang, string normal, string newSlang, string newNormal) => 
-            Edit(slang, normal, normal, newSlang, newNormal, newNormal); // Temp until swear added
-        /// <summary> Changes the dictionary definition of a translation </summary>
+       /// <summary> Changes the dictionary definition of a translation </summary>
         /// <returns> true if successful, otherwise false </returns>
-        public bool Edit(string slang, string normal, string swear, string newSlang, string newNormal, string newSwear)
+        public bool Edit(string word, string translated, string newWord, string newTranslated)
         {
             List<WordObject> dictionary = Read();
-            WordObject translation = dictionary.Where(d => d.slangWord == slang && d.translatedWord == normal).FirstOrDefault();
+            WordObject translation = dictionary.Where(d => d.SlangWord == word && d.TranslatedWord == translated).FirstOrDefault();
             int index = dictionary.IndexOf(translation);
 
             // Replace found translation
@@ -112,9 +132,8 @@ namespace PhoneTranslate.Dictionary
             {
                 dictionary[index] = new WordObject
                 {
-                    slangWord = newSlang,
-                    translatedWord = newNormal,
-                    //swearWord = newSwear,
+                    SlangWord = newWord,
+                    TranslatedWord = newTranslated,
                 };
 
                 // Rewrite dictionary file
@@ -127,15 +146,14 @@ namespace PhoneTranslate.Dictionary
         }
 
 
-        public bool Remove(string slang, string normal) => Remove(slang, normal, normal); // Temp until swear added
         /// <summary> Removes a translation from the dictionary </summary>
         /// <returns> true if successful, otherwise false </returns>
-        public bool Remove(string slang, string normal, string swear)
+        public bool Remove(string word, string translated)
         {
             List<WordObject> dictionary = Read();
 
             // Rewrite dictionary when removed
-            if (dictionary.RemoveAll(d => d.slangWord == slang && d.translatedWord == normal) == 1)
+            if (dictionary.RemoveAll(d => d.SlangWord == word && d.TranslatedWord == translated) == 1)
             {
                 Write(dictionary);
                 return true;
@@ -155,11 +173,8 @@ namespace PhoneTranslate.Dictionary
                 {
                     foreach (WordObject translaltion in dictionary)
                     {
-                        string translationSwear = translaltion.translatedWord; // Temp until swear added
-
-                        writer.WriteLine(translaltion.slangWord);
-                        writer.WriteLine(translaltion.translatedWord);
-                        writer.WriteLine(translationSwear);
+                        writer.WriteLine(translaltion.SlangWord);
+                        writer.WriteLine(translaltion.TranslatedWord);
                         writer.WriteLine(); // Spacing line
                     }
                 }

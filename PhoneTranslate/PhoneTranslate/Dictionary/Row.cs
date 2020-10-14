@@ -21,9 +21,9 @@ namespace PhoneTranslate.Dictionary
         /// <summary> Adds new row of translations </summary>
         public void Add(WordObject translations, int posY)
         {
-            Cell(translations.slangWord, 0, posY);
-            Cell(translations.translatedWord, 161, posY);
-            Cell(translations.translatedWord, 322, posY);
+            Cell(translations.SlangWord, 0, posY);
+            Cell(translations.TranslatedWord, 161, posY);
+            Cell(translations.TranslatedWord, 322, posY);
         }
 
 
