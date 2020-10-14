@@ -59,7 +59,6 @@ namespace PhoneTranslate.Dictionary
             this.dictionary = dictionaryFile.Read();
             this.rows = new List<Row>();
             dictionaryPanel.Controls.Clear();
-            dictionaryPanel.Controls.Add(button1); // Temp to display scrolling
 
             Display();
         }

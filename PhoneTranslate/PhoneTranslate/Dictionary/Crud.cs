@@ -93,36 +93,24 @@ namespace PhoneTranslate.Dictionary
         /// <returns> true if successful, otherwise false </returns>
         public bool Add(string word, string translated)
         {
-            try
-            {
-                // Append dictionary
-                using (StreamWriter writer = new StreamWriter(this.file, true))
-                {
-                    writer.WriteLine(word);
-                    writer.WriteLine(translated);
-                    writer.WriteLine(); // Spacing line
-                }
+            List<WordObject> dictionary = Read();
 
-                return true;
-            }
-            catch (System.ArgumentNullException)
-            {
-                Console.WriteLine("{0} variable is null", nameof(this.file));
-            }
-            catch (System.ArgumentException)
-            {
-                MessageBox.Show(this.fileName + " file cannot be found");
-            }
+            // Translation already exists
+            if (dictionary.Where(d => d.SlangWord == word && d.TranslatedWord == translated) != null) 
+                return false;
 
+            dictionary.Add(new WordObject { SlangWord = word, TranslatedWord = translated, });
 
-            return false;
+            // Order alphabetically and rewite dictionary file
+            return Write(dictionary.OrderBy(d => d.SlangWord).ToList()); 
         }
 
         
-       /// <summary> Changes the dictionary definition of a translation </summary>
+        /// <summary> Changes the dictionary definition of a translation </summary>
         /// <returns> true if successful, otherwise false </returns>
         public bool Edit(string word, string translated, string newWord, string newTranslated)
         {
+            // Find index of current translation
             List<WordObject> dictionary = Read();
             WordObject translation = dictionary.Where(d => d.SlangWord == word && d.TranslatedWord == translated).FirstOrDefault();
             int index = dictionary.IndexOf(translation);
@@ -136,10 +124,8 @@ namespace PhoneTranslate.Dictionary
                     TranslatedWord = newTranslated,
                 };
 
-                // Rewrite dictionary file
-                Write(dictionary);
-
-                return true;
+                // Order alphabetically and rewrite dictionary file
+                return Write(dictionary.OrderBy(d => d.SlangWord).ToList());
             }
 
             return false;
@@ -155,8 +141,7 @@ namespace PhoneTranslate.Dictionary
             // Rewrite dictionary when removed
             if (dictionary.RemoveAll(d => d.SlangWord == word && d.TranslatedWord == translated) == 1)
             {
-                Write(dictionary);
-                return true;
+                return Write(dictionary);
             }
 
             return false;
@@ -164,7 +149,8 @@ namespace PhoneTranslate.Dictionary
 
 
         /// <summary> Write out dictionary translations </summary>
-        private void Write(List<WordObject> dictionary)
+        /// <returns> true if successful, otherwise false </returns>
+        private bool Write(List<WordObject> dictionary)
         {
             try
             {
@@ -178,6 +164,8 @@ namespace PhoneTranslate.Dictionary
                         writer.WriteLine(); // Spacing line
                     }
                 }
+
+                return true;
             }
             catch (System.ArgumentNullException)
             {
@@ -187,6 +175,8 @@ namespace PhoneTranslate.Dictionary
             {
                 MessageBox.Show(this.fileName + " file cannot be found");
             }
+
+            return false;
         }
     }
 }

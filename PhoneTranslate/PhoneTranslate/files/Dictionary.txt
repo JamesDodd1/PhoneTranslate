@@ -1,17 +1,20 @@
 afk
 away from keyboard
 
+brb
+be right back
+
 btw
 by the way
 
 idk
 I don't know
 
-imo
-in my opinion
-
 imho
 in my humbly opinion
+
+imo
+in my opinion
 
 irl
 in real life
@@ -19,9 +22,33 @@ in real life
 jk
 just kidding
 
+lmk
+let me know
+
+np
+no problem
+
 omg
 oh my god
 
+omw
+on my way
+
+rofl
+rolling on the floor laughing
+
+stfu
+shut the fuck up
+
+tbh
+to be honnest
+
+tldr
+too long didn't read
+
 ttfn
 tata for now
+
+ttyl
+talk to you later
 

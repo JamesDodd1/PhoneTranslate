@@ -19,6 +19,7 @@ namespace PhoneTranslate
         public Translator()
         {
             InitializeComponent();
+            //new Dictionary.Crud(@"Dictionary").Add("afk", "away from keyboard");
         }
 
 
