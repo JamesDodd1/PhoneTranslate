@@ -85,5 +85,12 @@ namespace PhoneTranslate.Dictionary
 
             refreshBtn.PerformClick();
         }
+
+
+        /// <summary> Close the current form </summary>
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

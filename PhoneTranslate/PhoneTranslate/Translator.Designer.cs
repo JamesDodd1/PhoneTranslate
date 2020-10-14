@@ -136,14 +136,14 @@
             // 
             // dictionaryBtn
             // 
-            this.dictionaryBtn.Location = new System.Drawing.Point(78, 314);
+            this.dictionaryBtn.Location = new System.Drawing.Point(74, 319);
             this.dictionaryBtn.Name = "dictionaryBtn";
             this.dictionaryBtn.Size = new System.Drawing.Size(100, 30);
             this.dictionaryBtn.TabIndex = 9;
             this.dictionaryBtn.Text = "Dictionary";
             this.dictionaryBtn.UseVisualStyleBackColor = true;
             this.dictionaryBtn.Click += new System.EventHandler(this.DictionaryBtn_Click);
-            //
+            // 
             // SwearFilter
             // 
             this.SwearFilter.AutoSize = true;

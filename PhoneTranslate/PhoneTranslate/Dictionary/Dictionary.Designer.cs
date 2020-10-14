@@ -36,6 +36,7 @@
             this.saveAllBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.refreshBtn = new System.Windows.Forms.Button();
+            this.backBtn = new System.Windows.Forms.Button();
             this.dictionaryPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +119,7 @@
             // 
             // refreshBtn
             // 
-            this.refreshBtn.Location = new System.Drawing.Point(40, 299);
+            this.refreshBtn.Location = new System.Drawing.Point(211, 299);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(100, 40);
             this.refreshBtn.TabIndex = 4;
@@ -126,11 +127,22 @@
             this.refreshBtn.UseVisualStyleBackColor = true;
             this.refreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
+            // backBtn
+            // 
+            this.backBtn.Location = new System.Drawing.Point(40, 299);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(100, 40);
+            this.backBtn.TabIndex = 7;
+            this.backBtn.Text = "Back";
+            this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.BackBtn_Click);
+            // 
             // Dictionary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.backBtn);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.saveAllBtn);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Button saveAllBtn;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.Button backBtn;
     }
 }
