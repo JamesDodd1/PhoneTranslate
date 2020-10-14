@@ -36,7 +36,9 @@ namespace PhoneTranslate
             WordReplace wr = new WordReplace();
 
             inputField.Text = "";
-            outputField.Text = wr.WordMatch(text);
+            //outputField.Text = wr.WordMatch(text);
+            outputField.Text = wr.RunReplace(text,SwearFilter.Checked);
+            
 
             MessageBox.Show("Complete");
         }
@@ -124,6 +126,12 @@ namespace PhoneTranslate
             this.Hide();
             new Dictionary.Dictionary().ShowDialog();
             this.Show();
+        }
+        
+            
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 
