@@ -87,7 +87,7 @@ namespace PhoneTranslate
                 //if first letter of slang is not in the tokenValues list then create a new token.
                 if (!values.Contains(wordList[i].SlangWord[0]))
                 {
-                    tokens.Add(new PotentialToken(wordList[i].SlangWord[0], i));
+                    tokens.Add(new PotentialToken(wordList[i].SlangWord.ToLower()[0], i));
                     values = (values + wordList[i].SlangWord[0]);
 
                 }
@@ -191,6 +191,8 @@ namespace PhoneTranslate
             //replacements need to be done back to front otherwise the locations would get shifted 
             //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
             input = (/*"^ " +*/ input + " ^");
+            input = input.ToLower();
+
             for (int i = 0; i < tkl.Count; i++)
             {
                 for (int j = 0; j < tkl[i].potentialsList.Count; j++)
@@ -223,8 +225,12 @@ namespace PhoneTranslate
             for (int i = (list.Count - 1); i >= 0; i--)
             {
                 //do the replacing. you start at -1 from count as that is the end val 
-                input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
+                //input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
 
+                //take out the slang word
+                input = input.Remove(list[i].LocationValue, slanglist[list[i].CheckListLocation].SlangWord.Count());
+                //fill in the new word
+                input = input.Insert(list[i].LocationValue, slanglist[list[i].CheckListLocation].TranslatedWord);
             }
 
             return input;
