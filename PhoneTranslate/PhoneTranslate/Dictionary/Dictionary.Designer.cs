@@ -33,18 +33,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.saveAllBtn = new System.Windows.Forms.Button();
+            this.editBtn = new System.Windows.Forms.Button();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.dictionaryPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dictionaryPanel
             // 
             this.dictionaryPanel.AutoScroll = true;
-            this.dictionaryPanel.BackColor = System.Drawing.Color.LimeGreen;
+            this.dictionaryPanel.BackColor = System.Drawing.Color.White;
             this.dictionaryPanel.Controls.Add(this.button1);
             this.dictionaryPanel.Location = new System.Drawing.Point(40, 30);
             this.dictionaryPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dictionaryPanel.Name = "dictionaryPanel";
-            this.dictionaryPanel.Size = new System.Drawing.Size(500, 300);
+            this.dictionaryPanel.Size = new System.Drawing.Size(500, 250);
             this.dictionaryPanel.TabIndex = 0;
             // 
             // button1
@@ -54,12 +57,12 @@
             this.button1.Size = new System.Drawing.Size(104, 100);
             this.button1.TabIndex = 0;
             this.button1.TabStop = false;
-            this.button1.Text = "button1";
+            this.button1.Text = "Button to test scrolling";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Red;
+            this.label1.BackColor = System.Drawing.Color.Silver;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(40, 10);
@@ -71,7 +74,7 @@
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Red;
+            this.label2.BackColor = System.Drawing.Color.Silver;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(201, 10);
@@ -83,7 +86,7 @@
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Red;
+            this.label3.BackColor = System.Drawing.Color.Silver;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(362, 10);
@@ -93,18 +96,51 @@
             this.label3.Text = "Swear";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Form1
+            // saveAllBtn
+            // 
+            this.saveAllBtn.Location = new System.Drawing.Point(423, 299);
+            this.saveAllBtn.Name = "saveAllBtn";
+            this.saveAllBtn.Size = new System.Drawing.Size(100, 40);
+            this.saveAllBtn.TabIndex = 6;
+            this.saveAllBtn.Text = "Save All";
+            this.saveAllBtn.UseVisualStyleBackColor = true;
+            this.saveAllBtn.Click += new System.EventHandler(this.SaveAllBtn_Click);
+            // 
+            // editBtn
+            // 
+            this.editBtn.Location = new System.Drawing.Point(317, 299);
+            this.editBtn.Name = "editBtn";
+            this.editBtn.Size = new System.Drawing.Size(100, 40);
+            this.editBtn.TabIndex = 5;
+            this.editBtn.Text = "Edit";
+            this.editBtn.UseVisualStyleBackColor = true;
+            this.editBtn.Click += new System.EventHandler(this.EditBtn_Click);
+            // 
+            // refreshBtn
+            // 
+            this.refreshBtn.Location = new System.Drawing.Point(40, 299);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(100, 40);
+            this.refreshBtn.TabIndex = 4;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            // 
+            // Dictionary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.refreshBtn);
+            this.Controls.Add(this.editBtn);
+            this.Controls.Add(this.saveAllBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dictionaryPanel);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Form1";
+            this.Name = "Dictionary";
             this.Text = "Form1";
             this.dictionaryPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -118,5 +154,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveAllBtn;
+        private System.Windows.Forms.Button editBtn;
+        private System.Windows.Forms.Button refreshBtn;
     }
 }

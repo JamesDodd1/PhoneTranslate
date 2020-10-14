@@ -22,6 +22,7 @@ namespace PhoneTranslate.Dictionary
             InitializeComponent();
 
             this.dictionary = new Crud().Read();
+            this.rows = new List<Row>();
 
             Display();
         }
@@ -30,12 +31,6 @@ namespace PhoneTranslate.Dictionary
         /// <summary> Retrieves and displays the translation dictionary </summary>
         private void Display()
         {
-            // Reset displayed dictionary list
-            this.rows = new List<Row>();
-            dictionaryPanel.Controls.Clear();
-            dictionaryPanel.Controls.Add(button1); // Temp to display scrolling
-
-
             int posY = 0;
             foreach (WordObject translation in this.dictionary)
             {
@@ -44,7 +39,6 @@ namespace PhoneTranslate.Dictionary
 
                 foreach (Cell cell in line.Items)
                 {
-                    cell.Label.Click += Row_Click;
                     dictionaryPanel.Controls.Add(cell.Label);
                     dictionaryPanel.Controls.Add(cell.TextBox);
                 }
@@ -55,21 +49,41 @@ namespace PhoneTranslate.Dictionary
             }
         }
 
-        private void Row_Click(object sender, EventArgs e)
+
+        /// <summary> Redraws dictionary panel </summary>
+        private void RefreshBtn_Click(object sender, EventArgs e)
         {
-            /*
-            DictionaryLabel dl = (DictionaryLabel)sender;
-            this.rows.ForEach(r =>
+            // Reset displayed dictionary list
+            this.dictionary = new Crud().Read();
+            this.rows = new List<Row>();
+            dictionaryPanel.Controls.Clear();
+            dictionaryPanel.Controls.Add(button1); // Temp to display scrolling
+
+            Display();
+        }
+
+
+        /// <summary> Changes highlighted rows into editor mode </summary>
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Row line in rows)
             {
-                r.Items.ForEach(i => 
-                {
-                    if (i.Label == dl)
-                        r.Selected = !r.Selected;
-                    else
-                        r.Selected = false;
-                });
-            });
-            */
+                if (line.Selected)
+                    line.Label_DoubleClick(sender, e);
+            }
+        }
+
+
+        /// <summary> Saves any changes made to all rows </summary>
+        private void SaveAllBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Row line in rows)
+            {
+                if (line.Editing)
+                    line.Save();
+            }
+
+            refreshBtn.PerformClick();
         }
     }
 }

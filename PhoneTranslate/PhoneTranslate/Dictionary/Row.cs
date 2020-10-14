@@ -13,6 +13,7 @@ namespace PhoneTranslate.Dictionary
         public Row()
         {
             this.Items = new List<Cell>();
+            this.Editing = false;
             this.Selected = false;
         }
 
@@ -49,8 +50,10 @@ namespace PhoneTranslate.Dictionary
 
 
         /// <summary> Swap to TextBoxes when double clicked </summary>
-        private void Label_DoubleClick(object sender, EventArgs e)
+        internal void Label_DoubleClick(object sender, EventArgs e)
         {
+            this.Editing = true;
+            this.Selected = false;
             this.Items.ForEach(i => i.Swap());
         }
 
@@ -58,17 +61,25 @@ namespace PhoneTranslate.Dictionary
         /// <summary> Save changes when Enter Key pressed </summary>
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter && this.Editing)
             {
-                this.Selected = true;
-
-                this.Items.ForEach(i => i.Swap());
-                // Save changes to dictionary
+                this.Editing = false;
+                this.Selected = false;
+                Save();
             }
         }
 
 
+        /// <summary> Save changes to dictionary </summary>
+        public void Save()
+        {
+            // Pending
+            this.Items.ForEach(i => i.Swap());
+        }
+
+
         public List<Cell> Items { get; private set; }
+        public bool Editing { get; set; }
         public bool Selected
         {
             get => this.selected;

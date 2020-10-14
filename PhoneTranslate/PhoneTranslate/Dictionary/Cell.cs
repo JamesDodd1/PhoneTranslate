@@ -56,12 +56,12 @@ namespace PhoneTranslate.Dictionary
             this.Selected = false;
 
             // Event controls
-            this.Click += DictionaryLabel_Click;
+            this.Click += CellLabel_Click;
         }
 
 
         /// <summary> Alternates the Selected value when Label is single clicked </summary>
-        private void DictionaryLabel_Click(object sender, EventArgs e)
+        private void CellLabel_Click(object sender, EventArgs e)
         {
             this.Selected = !this.Selected;
         }
