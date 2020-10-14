@@ -39,6 +39,7 @@
             this.selectFileCombo = new System.Windows.Forms.ComboBox();
             this.dictionaryBtn = new System.Windows.Forms.Button();
             this.swearFilter = new System.Windows.Forms.CheckBox();
+            this.msgLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // inputField
@@ -46,7 +47,7 @@
             this.inputField.BackColor = System.Drawing.Color.White;
             this.inputField.Location = new System.Drawing.Point(74, 67);
             this.inputField.Name = "inputField";
-            this.inputField.Size = new System.Drawing.Size(116, 117);
+            this.inputField.Size = new System.Drawing.Size(200, 100);
             this.inputField.TabIndex = 1;
             this.inputField.Text = "";
             // 
@@ -56,7 +57,7 @@
             this.outputField.Location = new System.Drawing.Point(316, 67);
             this.outputField.Name = "outputField";
             this.outputField.ReadOnly = true;
-            this.outputField.Size = new System.Drawing.Size(116, 117);
+            this.outputField.Size = new System.Drawing.Size(200, 100);
             this.outputField.TabIndex = 2;
             this.outputField.Text = "";
             // 
@@ -80,7 +81,7 @@
             // 
             // translateBtn
             // 
-            this.translateBtn.Location = new System.Drawing.Point(74, 230);
+            this.translateBtn.Location = new System.Drawing.Point(74, 215);
             this.translateBtn.Name = "translateBtn";
             this.translateBtn.Size = new System.Drawing.Size(100, 30);
             this.translateBtn.TabIndex = 3;
@@ -90,7 +91,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(316, 230);
+            this.saveBtn.Location = new System.Drawing.Point(316, 215);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 30);
             this.saveBtn.TabIndex = 6;
@@ -100,7 +101,7 @@
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(422, 230);
+            this.loadBtn.Location = new System.Drawing.Point(422, 215);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(100, 30);
             this.loadBtn.TabIndex = 7;
@@ -110,7 +111,7 @@
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(180, 230);
+            this.clearBtn.Location = new System.Drawing.Point(180, 215);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(100, 30);
             this.clearBtn.TabIndex = 4;
@@ -127,7 +128,7 @@
             "Save 3",
             "Save 4",
             "Save 5"});
-            this.selectFileCombo.Location = new System.Drawing.Point(316, 266);
+            this.selectFileCombo.Location = new System.Drawing.Point(316, 251);
             this.selectFileCombo.Name = "selectFileCombo";
             this.selectFileCombo.Size = new System.Drawing.Size(206, 24);
             this.selectFileCombo.TabIndex = 8;
@@ -136,7 +137,7 @@
             // 
             // dictionaryBtn
             // 
-            this.dictionaryBtn.Location = new System.Drawing.Point(74, 319);
+            this.dictionaryBtn.Location = new System.Drawing.Point(74, 304);
             this.dictionaryBtn.Name = "dictionaryBtn";
             this.dictionaryBtn.Size = new System.Drawing.Size(100, 30);
             this.dictionaryBtn.TabIndex = 9;
@@ -147,7 +148,7 @@
             // swearFilter
             // 
             this.swearFilter.AutoSize = true;
-            this.swearFilter.Location = new System.Drawing.Point(78, 272);
+            this.swearFilter.Location = new System.Drawing.Point(78, 257);
             this.swearFilter.Name = "swearFilter";
             this.swearFilter.Size = new System.Drawing.Size(96, 20);
             this.swearFilter.TabIndex = 9;
@@ -155,11 +156,23 @@
             this.swearFilter.UseVisualStyleBackColor = true;
             this.swearFilter.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // msgLbl
+            // 
+            this.msgLbl.AutoSize = true;
+            this.msgLbl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.msgLbl.Location = new System.Drawing.Point(74, 174);
+            this.msgLbl.Name = "msgLbl";
+            this.msgLbl.Size = new System.Drawing.Size(63, 16);
+            this.msgLbl.TabIndex = 10;
+            this.msgLbl.Text = "Message";
+            this.msgLbl.Visible = false;
+            // 
             // Translator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.msgLbl);
             this.Controls.Add(this.dictionaryBtn);
             this.Controls.Add(this.swearFilter);
             this.Controls.Add(this.selectFileCombo);
@@ -192,6 +205,7 @@
         private System.Windows.Forms.ComboBox selectFileCombo;
         private System.Windows.Forms.Button dictionaryBtn;
         private System.Windows.Forms.CheckBox swearFilter;
+        private System.Windows.Forms.Label msgLbl;
     }
 }
 

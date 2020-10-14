@@ -39,13 +39,14 @@ namespace PhoneTranslate
             outputField.Text = wr.RunReplace(text, swearFilter.Checked);
             
 
-            MessageBox.Show("Complete");
+            msgLbl.Text = "Complete";
         }
 
 
         /// <summary> Clears textboxes </summary>
         private void ClearBtn_Click(object sender, EventArgs e)
         {
+            msgLbl.Text = "";
             inputField.Clear();
             outputField.Clear();
         }
@@ -63,33 +64,42 @@ namespace PhoneTranslate
                 Input = inputField.Text,
                 Output = outputField.Text,
             };
-
+            string msg = "";
 
             if (this.sl.Save(fileName, dt))
-                MessageBox.Show("Saved");
+                msg = "Saved";
             else
-                MessageBox.Show("Failed");
+                msg = "Failed";
+
+            msgLbl.Text = msg;
         }
 
 
         /// <summary> Loads text from a file </summary>
         private void LoadBtn_Click(object sender, EventArgs e)
         {
-            string fileName = SelectedFile();
+            string fileName = SelectedFile(); // Retrieve selected file's name
+
+            // No file found
             if (fileName == "" || fileName == null) 
                 return;
 
-            DisplayText dt = this.sl.Load(fileName);
+           
+            DisplayText text = this.sl.Load(fileName); // Retrieve file's saved data
+            string msg = "";
 
-            if (dt != null)
+            // Display saved text in TextBoxes
+            if (text != null)
             {
-                inputField.Text = dt.Input;
-                outputField.Text = dt.Output;
+                inputField.Text = text.Input;
+                outputField.Text = text.Output;
 
-                MessageBox.Show("Loaded");
+                msg = "Loaded";
             }
             else
-                MessageBox.Show("Fail");
+                msg = "Fail";
+
+            msgLbl.Text = msg;
         }
 
 

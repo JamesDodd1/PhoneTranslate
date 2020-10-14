@@ -35,12 +35,12 @@ namespace PhoneTranslate
         /// </summary>
         public void Setup()
         {
-            Crud dictionaryFile = DictionaryFactory.Create("Dictionary");
+            Crud dictionaryFile = DictionaryFactory.Retrieve("Dictionary");
             checkForList = dictionaryFile.Read();
             //checkForList.Add(new WordObject("idk", "I don't know"));
             //checkForList.Add(new WordObject("ttfn", "tata for now"));
 
-            Crud swearFile = DictionaryFactory.Create("SwearWords");
+            Crud swearFile = DictionaryFactory.Retrieve("SwearWords");
             swearList = swearFile.Read();
             //swearList.Add(new WordObject("damn", "****"));
 
