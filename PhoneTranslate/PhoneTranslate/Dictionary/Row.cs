@@ -73,7 +73,12 @@ namespace PhoneTranslate.Dictionary
         /// <summary> Save changes to dictionary </summary>
         public void Save()
         {
-            // Pending
+            Crud dictionary = DictionaryFactory.GetFile("Dictionary");
+
+            Cell slang = this.Items[0];
+            Cell translated = this.Items[1];
+            dictionary.Edit(slang.Label.Text, translated.Label.Text, slang.TextBox.Text, translated.TextBox.Text);
+
             this.Items.ForEach(i => i.Swap());
         }
 

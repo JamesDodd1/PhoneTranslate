@@ -22,7 +22,7 @@ namespace PhoneTranslate.Dictionary
         {
             InitializeComponent();
 
-            this.dictionaryFile = DictionaryFactory.Retrieve("Dictionary");
+            this.dictionaryFile = DictionaryFactory.GetFile("Dictionary");
             this.dictionary = dictionaryFile.Read();
             this.rows = new List<Row>();
 

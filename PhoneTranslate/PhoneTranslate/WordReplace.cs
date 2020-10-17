@@ -35,14 +35,11 @@ namespace PhoneTranslate
         /// </summary>
         public void Setup()
         {
-            Crud dictionaryFile = DictionaryFactory.Retrieve("Dictionary");
+            Crud dictionaryFile = DictionaryFactory.GetFile("Dictionary");
             checkForList = dictionaryFile.Read();
-            //checkForList.Add(new WordObject("idk", "I don't know"));
-            //checkForList.Add(new WordObject("ttfn", "tata for now"));
 
-            Crud swearFile = DictionaryFactory.Retrieve("SwearWords");
+            Crud swearFile = DictionaryFactory.GetFile("SwearWords");
             swearList = swearFile.Read();
-            //swearList.Add(new WordObject("damn", "****"));
 
             CreateTokenList(ref tokenList, ref tokenValues, checkForList);
         }
@@ -89,11 +86,10 @@ namespace PhoneTranslate
                 {
                     tokens.Add(new PotentialToken(wordList[i].SlangWord.ToLower()[0], i));
                     values = (values + wordList[i].SlangWord[0]);
-
                 }
                 else
                 {
-                    tokens[values.IndexOf(wordList[i].SlangWord[0])].referenceList.Add(i);
+                    tokens[values.IndexOf(wordList[i].SlangWord[0])].ReferenceList.Add(i);
                 }
             }
         }
@@ -159,7 +155,7 @@ namespace PhoneTranslate
                     {
                         //add location of first match to potential list
                         int firstLocation = input.IndexOf((" " + tkl[i].TokenValue));
-                        tkl[i].potentialsList.Add(firstLocation + shunt);
+                        tkl[i].PotentialsList.Add(firstLocation + shunt);
 
                         //remove already checked area from input
                         input = input.Remove(0, (firstLocation + 2));
@@ -195,23 +191,27 @@ namespace PhoneTranslate
 
             for (int i = 0; i < tkl.Count; i++)
             {
-                for (int j = 0; j < tkl[i].potentialsList.Count; j++)
+                PotentialToken token = tkl[i];
+
+                for (int j = 0; j < token.PotentialsList.Count; j++)
                 {
+                    int potential = token.PotentialsList[j];
+
                     //find next whitespace
                     //compare
 
-
-                    int nextwhitespace = input.IndexOf(" ", tkl[i].potentialsList[j]);
-                    int gapcount = nextwhitespace - (tkl[i].potentialsList[j] - 1);
-                    string check = input.Substring((tkl[i].potentialsList[j]), gapcount);
+                    int nextWhiteSpace = input.IndexOf(" ", potential);
+                    int gapCount = nextWhiteSpace - (potential - 1);
+                    string check = input.Substring(potential, gapCount);
 
                     //what does this doooooo!?
-                    for (int k = 0; k < tkl[i].referenceList.Count; k++)
+                    for (int k = 0; k < token.ReferenceList.Count; k++)
                     {
-                        if (check.Contains(wordList[tkl[i].referenceList[k]].SlangWord))
+                        int reference = token.ReferenceList[k];
+                        if (check.Contains(wordList[reference].SlangWord))
                         {
                             //you have a match. now you make a confirm token and put it in the change list
-                            confirms.Add(new ConfirmToken(tkl[i].potentialsList[j], tkl[i].referenceList[k]));
+                            confirms.Add(new ConfirmToken(potential, reference));
                             break;
                         }
                     }
@@ -224,13 +224,15 @@ namespace PhoneTranslate
         {
             for (int i = (list.Count - 1); i >= 0; i--)
             {
+                ConfirmToken token = list[i];
+
                 //do the replacing. you start at -1 from count as that is the end val 
                 //input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
 
                 //take out the slang word
-                input = input.Remove(list[i].LocationValue, slanglist[list[i].CheckListLocation].SlangWord.Count());
+                input = input.Remove(token.LocationValue, slanglist[token.CheckListLocation].SlangWord.Count());
                 //fill in the new word
-                input = input.Insert(list[i].LocationValue, slanglist[list[i].CheckListLocation].TranslatedWord);
+                input = input.Insert(token.LocationValue, slanglist[token.CheckListLocation].TranslatedWord);
             }
 
             return input;
@@ -254,31 +256,32 @@ namespace PhoneTranslate
     public struct PotentialToken
     {
         public char TokenValue { get; set; }
-        public List<int> referenceList;
+        public List<int> ReferenceList { get; private set; }
 
         //every time you find a potential by matching the token, you put the start location in this list
-        public List<int> potentialsList;
+        public List<int> PotentialsList { get; private set; }
+
 
         public PotentialToken(char tkV, int listLocation)
         {
-            referenceList = new List<int>();
-            potentialsList = new List<int>();
+            ReferenceList = new List<int>();
+            PotentialsList = new List<int>();
 
             TokenValue = tkV;
-            referenceList.Add(listLocation);
+            ReferenceList.Add(listLocation);
         }
     }
 
 
     public struct ConfirmToken
     {
-        public int LocationValue { get; set; }
-        public int CheckListLocation { get; set; }
+        public int LocationValue { get; private set; }
+        public int CheckListLocation { get; private set; }
 
-        public ConfirmToken(int location, int listval)
+        public ConfirmToken(int location, int listVal)
         {
             LocationValue = location;
-            CheckListLocation = listval;
+            CheckListLocation = listVal;
         }
     }
 }

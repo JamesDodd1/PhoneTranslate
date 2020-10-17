@@ -154,7 +154,7 @@
             this.swearFilter.TabIndex = 9;
             this.swearFilter.Text = "Swear Filter";
             this.swearFilter.UseVisualStyleBackColor = true;
-            this.swearFilter.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.swearFilter.CheckedChanged += new System.EventHandler(this.SwearFilter_CheckedChanged);
             // 
             // msgLbl
             // 

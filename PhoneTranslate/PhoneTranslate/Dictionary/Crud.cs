@@ -10,7 +10,7 @@ namespace PhoneTranslate.Dictionary
 {
     public class DictionaryFactory
     {
-        public static Crud Retrieve(string type)
+        public static Crud GetFile(string type)
         {
             Crud file = null;
 
