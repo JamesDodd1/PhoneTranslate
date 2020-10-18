@@ -36,8 +36,8 @@ namespace PhoneTranslate
 
             inputField.Text = "";
             //outputField.Text = wr.WordMatch(text);
-            outputField.Text = wr.RunReplace(text, swearFilter.Checked);
-            
+            outputField.Text = wr.RunReplace(text, swearFilter.Checked, ReverseTranslate.Checked);
+            //ReverseTranslate.Checked
 
             msgLbl.Text = "Complete";
         }
