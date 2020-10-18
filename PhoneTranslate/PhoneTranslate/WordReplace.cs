@@ -168,6 +168,8 @@ namespace PhoneTranslate
                 ParseInput(inputstring, ref tokenList);
                 //find the ones that need replacing
                 ConfirmPotentialMatches(inputstring, tokenList, ref replaceList, checkForList);
+                //this is the fix, making sure that you replace from the back, buy ordering the list
+                replaceList = ArrangeList(replaceList);
                 //replace the matches (going from end to start)
                 final = ReplaceMatches(inputstring, ref replaceList, checkForList);
             }
@@ -204,6 +206,8 @@ namespace PhoneTranslate
             input = input.PadLeft(input.Count() + 1);
             input = input.ToLower();
 
+            string reloadInput = input;
+
             int shunt = 0;
 
             for (int i = 0; i < tkl.Count; i++)
@@ -221,8 +225,12 @@ namespace PhoneTranslate
                         tkl[i].PotentialsList.Add(firstLocation + shunt);
 
                         //remove already checked area from input
-                        input = input.Remove(0, (firstLocation + 2));
-                        shunt = (firstLocation + 2);
+                        input = input.Remove((firstLocation), 2);
+
+                        //ok, so this just wipes everything before, which could be really bad,so you need to just remove the word you found.
+                        //so now the issue with this is it only works if everything is done in alphabetical order.
+
+                        shunt += 2;
                         //do till contains is false
 
                     }
@@ -230,7 +238,10 @@ namespace PhoneTranslate
                     {
                         found = false;
                     }
+                    
                 }
+                input = reloadInput;
+                shunt = 0;
 
             }
         }
@@ -281,7 +292,6 @@ namespace PhoneTranslate
                 }
             }
         }
-
         public void ConfirmPotentialMatches(string input, List<PotentialToken> tkl, ref List<ConfirmToken> confirms, List<WordObject> wordList, bool reversed)
         {
             //go through the list of the potential tokens, 
@@ -461,6 +471,39 @@ namespace PhoneTranslate
             
 
             return input;
+        }
+
+        public List<ConfirmToken> ArrangeList(List<ConfirmToken> tboList)
+        {
+            List<ConfirmToken> orderedList = new List<ConfirmToken>();
+            while(tboList.Count() > 0)
+            {
+                int lowest = 777;
+                int lowestVal = 777;
+                for (int i = 0; i < tboList.Count(); i++)
+                {
+                    
+
+                    if (tboList[i].LocationValue < lowest)
+                    {
+                        lowest = tboList[i].LocationValue;
+                        lowestVal = i;
+                    }
+
+                    if (i == (tboList.Count() - 1))
+                    {
+                        orderedList.Add(tboList[lowestVal]);
+                        tboList.Remove(tboList[lowestVal]);
+
+                        lowest = 777;
+                        lowestVal = 777;
+                    }
+                }
+            }
+            
+
+            tboList = orderedList;
+            return tboList;
         }
     }
 
