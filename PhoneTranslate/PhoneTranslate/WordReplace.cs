@@ -93,7 +93,6 @@ namespace PhoneTranslate
                 }
             }
         }
-        //override with aditional input
         public void CreateTokenList(ref List<PotentialToken> tokens, ref string values, List<WordObject> wordList, bool reversed)
         {
             
@@ -139,6 +138,13 @@ namespace PhoneTranslate
 
 
         //The actual replace command to call from outside
+        /// <summary>
+        /// Replaces text from the input using the dictionary as reference
+        /// </summary>
+        /// <param name="inputstring"> The text you want to run the replace through</param>
+        /// <param name="swearFilter"> Is the swear filter checked</param>
+        /// <param name="reverseTranslate"> is the Reverse translate checked</param>
+        /// <returns></returns>
         public string RunReplace(string inputstring, bool swearFilter, bool reverseTranslate)
         {
             string final = "";
@@ -153,6 +159,8 @@ namespace PhoneTranslate
                 ParseInput(inputstring, ref tokenList);
                 //find the ones that need replacing
                 ConfirmPotentialPhrasicMatches(inputstring, tokenList, ref replaceList, checkForList, true);
+                //this is the fix, making sure that you replace from the back, buy ordering the list
+                replaceList = ArrangeList(replaceList);
                 //replace the matches (going from end to start)
                 final = ReplaceMatches(inputstring, ref replaceList, checkForList, true);
 
