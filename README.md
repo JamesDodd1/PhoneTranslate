@@ -4,10 +4,10 @@ Features to add and test
 
 ### Transaltion ###
 - Replace slang - **ADDED**
-- Swear filter (check box)
-- Swap sides (slang to norm, norm to slang)
+- Swear filter (check box)- **ADDED**
+- Swap sides (slang to norm, norm to slang)- **ADDED**
 
-- Tokens ignore cases, check against set to lower case, and outputs are correctly capitalised 
+- Tokens ignore cases, check against set to lower case, and outputs are correctly capitalised  - **ADDED - Capitalisation to be done in dictionary**
 
 ### Saving ###
 - Five save state files - **ADDED**
