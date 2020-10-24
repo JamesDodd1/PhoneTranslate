@@ -395,26 +395,33 @@ namespace PhoneTranslate
                         if (wordList[reference].TranslatedWord.Count() <= input.Count())
                         {
                             checkcount = wordList[reference].TranslatedWord.Count();
-                            check = input.Substring(potential, checkcount);
+                            if (input.Count()> (checkcount + potential))
+                            {
+                                check = input.Substring(potential, checkcount);
 
-                            if (reversed)
-                            {
-                                if (check.Contains(wordList[reference].TranslatedWord.ToLower()))
+                                if (reversed)
                                 {
-                                    //you have a match. now you make a confirm token and put it in the change list
-                                    confirms.Add(new ConfirmToken(potential, reference));
-                                    break;
+                                    if (check.Contains(wordList[reference].TranslatedWord.ToLower()))
+                                    {
+                                        //you have a match. now you make a confirm token and put it in the change list
+                                        confirms.Add(new ConfirmToken(potential, reference));
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    if (check.Contains(wordList[reference].SlangWord.ToLower()))
+                                    {
+                                        //you have a match. now you make a confirm token and put it in the change list
+                                        confirms.Add(new ConfirmToken(potential, reference));
+                                        break;
+                                    }
                                 }
                             }
-                            else
-                            {
-                                if (check.Contains(wordList[reference].SlangWord.ToLower()))
-                                {
-                                    //you have a match. now you make a confirm token and put it in the change list
-                                    confirms.Add(new ConfirmToken(potential, reference));
-                                    break;
-                                }
-                            }
+                            
+                                
+
+                            
 
                         }
                         
