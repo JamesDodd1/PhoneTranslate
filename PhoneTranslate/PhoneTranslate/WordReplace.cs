@@ -214,6 +214,10 @@ namespace PhoneTranslate
             input = input.PadLeft(input.Count() + 1);
             input = input.ToLower();
 
+            //find all of the /n and then add a space after them, then at the end, remove that space
+            input = input.Replace("\n", "\n ");
+            
+
             string reloadInput = input;
 
             int shunt = 0;
@@ -270,6 +274,7 @@ namespace PhoneTranslate
             //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
             input = (/*"^ " +*/ input + " ^");
             input = input.ToLower();
+            input = input.Replace("\n", "\n ");
 
             for (int i = 0; i < tkl.Count; i++)
             {
@@ -311,6 +316,7 @@ namespace PhoneTranslate
             //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
             input = (/*"^ " +*/ input + " ^");
             input = input.ToLower();
+            input = input.Replace("\n", "\n ");
 
             for (int i = 0; i < tkl.Count; i++)
             {
@@ -368,6 +374,7 @@ namespace PhoneTranslate
             //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
             input = (/*"^ " +*/ input + " ^");
             input = input.ToLower();
+            input = input.Replace("\n", "\n ");
 
             for (int i = 0; i < tkl.Count; i++)
             {
@@ -441,11 +448,13 @@ namespace PhoneTranslate
 
                 //do the replacing. you start at -1 from count as that is the end val 
                 //input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
-
+                input = input.Replace("\n", "\n "); //this works, but is bad coding, find the reason, think man.
                 //take out the slang word
                 input = input.Remove(token.LocationValue, slanglist[token.CheckListLocation].SlangWord.Count());
                 //fill in the new word
                 input = input.Insert(token.LocationValue, slanglist[token.CheckListLocation].TranslatedWord);
+
+                input = input.Replace("\n ", "\n"); //this is the fix to the above replace
             }
 
             return input;
