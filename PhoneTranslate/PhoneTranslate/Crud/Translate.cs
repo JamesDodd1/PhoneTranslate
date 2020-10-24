@@ -6,41 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhoneTranslate.Dictionary
+namespace PhoneTranslate.Crud
 {
-    public class DictionaryFactory
-    {
-        public static Crud GetFile(string type)
-        {
-            Crud file = null;
-
-            switch (type)
-            {
-                case "Dictionary":
-                    file = new Crud(@"Dictionary");
-                    break;
-
-                case "SwearWords":
-                    file = new Crud(@"SwearWords");
-                    break;
-
-                default:
-                    break;
-            }
-
-            return file;
-        }
-    }
-
-
     /// <summary> Dictionary CRUD class </summary>
-    public class Crud
+    public class Translate
     {
         private string file, fileName;
 
 
         /// <summary> Initalises a new instance of Crud </summary>
-        public Crud(string file) 
+        public Translate(string file) 
         {
             this.fileName = file;
             this.file = @".\..\..\files\" + fileName + @".txt";

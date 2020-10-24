@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneTranslate.Crud;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace PhoneTranslate.Dictionary
 {
     public partial class Dictionary : Form
     {
-        private Crud dictionaryFile;
+        private Translate dictionaryFile;
         private List<WordObject> dictionary;
         private List<Row> rows;
 
@@ -22,7 +23,7 @@ namespace PhoneTranslate.Dictionary
         {
             InitializeComponent();
 
-            this.dictionaryFile = DictionaryFactory.GetFile("Dictionary");
+            this.dictionaryFile = FileFactory.GetFile("Dictionary");
             this.dictionary = dictionaryFile.Read();
             this.rows = new List<Row>();
 

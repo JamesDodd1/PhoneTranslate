@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dictionary\Crud.cs" />
+    <Compile Include="Crud\Translate.cs" />
+    <Compile Include="Crud\FileFactory.cs" />
     <Compile Include="Dictionary\Dictionary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,7 +65,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveLoad.cs" />
+    <Compile Include="Crud\SaveLoad.cs" />
     <Compile Include="WordReplace.cs" />
     <EmbeddedResource Include="Dictionary\Dictionary.resx">
       <DependentUpon>Dictionary.cs</DependentUpon>

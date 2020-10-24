@@ -1,4 +1,4 @@
-﻿using PhoneTranslate.Dictionary;
+﻿using PhoneTranslate.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +35,13 @@ namespace PhoneTranslate
         /// </summary>
         public void Setup()
         {
-            Crud dictionaryFile = DictionaryFactory.GetFile("Dictionary");
+            Translate dictionaryFile = FileFactory.GetFile("Dictionary");
             checkForList = dictionaryFile.Read();
 
-            Crud swearFile = DictionaryFactory.GetFile("SwearWords");
+            Translate swearFile = FileFactory.GetFile("SwearWords");
             swearList = swearFile.Read();
 
-            CreateTokenList(ref tokenList, ref tokenValues, checkForList);
+            CreateTokenList(ref tokenList, ref tokenValues, checkForList, false);
         }
 
 
@@ -50,9 +50,7 @@ namespace PhoneTranslate
         ///</summary>
         public string WordMatch(string inputString)
         {
-            string output = "";
-            output = inputString;
-
+            string output = inputString;
 
 
             for (int i = 0; i < checkForList.Count(); i++)
@@ -73,26 +71,6 @@ namespace PhoneTranslate
         /// creates a list of Tokens to search through the text for. 
         /// One per letter that is used, and lists the slang relevant to the token inside the token.
         /// </summary>
-        public void CreateTokenList(ref List<PotentialToken> tokens, ref string values, List<WordObject> wordList)
-        {
-            //this is so you can run it again after startup
-            tokens.Clear();
-            values = "";
-
-            for (int i = 0; i < wordList.Count(); i++)
-            {
-                //if first letter of slang is not in the tokenValues list then create a new token.
-                if (!values.Contains(wordList[i].SlangWord[0]))
-                {
-                    tokens.Add(new PotentialToken(wordList[i].SlangWord.ToLower()[0], i));
-                    values = (values + wordList[i].SlangWord[0]);
-                }
-                else
-                {
-                    tokens[values.IndexOf(wordList[i].SlangWord[0])].ReferenceList.Add(i);
-                }
-            }
-        }
         public void CreateTokenList(ref List<PotentialToken> tokens, ref string values, List<WordObject> wordList, bool reversed)
         {
             
@@ -100,40 +78,22 @@ namespace PhoneTranslate
             tokens.Clear();
             values = "";
 
-            if (reversed)
-            {
-                for (int i = 0; i < wordList.Count(); i++)
-                {
-                    //if first letter of slang is not in the tokenValues list then create a new token.
-                    if (!values.Contains(wordList[i].TranslatedWord.ToLower()[0]))
-                    {
-                        tokens.Add(new PotentialToken(wordList[i].TranslatedWord.ToLower()[0], i));
-                        values = (values + wordList[i].TranslatedWord.ToLower()[0]);
-                    }
-                    else
-                    {
-                        tokens[values.IndexOf(wordList[i].TranslatedWord.ToLower()[0])].ReferenceList.Add(i);
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < wordList.Count(); i++)
-                {
-                    //if first letter of slang is not in the tokenValues list then create a new token.
-                    if (!values.Contains(wordList[i].SlangWord.ToLower()[0]))
-                    {
-                        tokens.Add(new PotentialToken(wordList[i].SlangWord.ToLower()[0], i));
-                        values = (values + wordList[i].SlangWord.ToLower()[0]);
-                    }
-                    else
-                    {
-                        tokens[values.IndexOf(wordList[i].SlangWord.ToLower()[0])].ReferenceList.Add(i);
-                    }
-                }
-            }
-
             
+            for (int i = 0; i < wordList.Count(); i++)
+            {
+                char firstLetter = reversed ? wordList[i].TranslatedWord.ToLower()[0] : wordList[i].SlangWord.ToLower()[0];
+                
+                //if first letter of slang is not in the tokenValues list then create a new token.
+                if (!values.Contains(firstLetter))
+                {
+                    tokens.Add(new PotentialToken(firstLetter, i));
+                    values = (values + firstLetter);
+                }
+                else
+                {
+                    tokens[values.IndexOf(firstLetter)].ReferenceList.Add(i);
+                }
+            }
         }
 
 
@@ -150,46 +110,28 @@ namespace PhoneTranslate
             string final = "";
             List<ConfirmToken> replaceList = new List<ConfirmToken>();
 
-            if (reverseTranslate)
-            {
-                //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
-                CreateTokenList(ref tokenList, ref tokenValues, checkForList, true);
 
-                //parse the text 
-                ParseInput(inputstring, ref tokenList);
-                //find the ones that need replacing
-                ConfirmPotentialPhrasicMatches(inputstring, tokenList, ref replaceList, checkForList, true);
-                //this is the fix, making sure that you replace from the back, buy ordering the list
-                replaceList = ArrangeList(replaceList);
-                //replace the matches (going from end to start)
-                final = ReplaceMatches(inputstring, ref replaceList, checkForList, true);
+            //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
+            CreateTokenList(ref tokenList, ref tokenValues, checkForList, reverseTranslate);
 
+            //parse the text 
+            ParseInput(inputstring, ref tokenList);
+            //find the ones that need replacing
+            ConfirmPotentialPhrasicMatches(inputstring, tokenList, ref replaceList, checkForList, reverseTranslate);
+            //this is the fix, making sure that you replace from the back, buy ordering the list
+            replaceList = ArrangeList(replaceList);
+            //replace the matches (going from end to start)
+            final = ReplaceMatches(inputstring, ref replaceList, checkForList, reverseTranslate);
 
-                
-            }
-            else
-            {
-                //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
-                CreateTokenList(ref tokenList, ref tokenValues, checkForList);
-
-                //parse the text 
-                ParseInput(inputstring, ref tokenList);
-                //find the ones that need replacing
-                ConfirmPotentialMatches(inputstring, tokenList, ref replaceList, checkForList);
-                //this is the fix, making sure that you replace from the back, buy ordering the list
-                replaceList = ArrangeList(replaceList);
-                //replace the matches (going from end to start)
-                final = ReplaceMatches(inputstring, ref replaceList, checkForList);
-            }
 
             if (swearFilter)
             {
                 replaceList.Clear();
 
-                CreateTokenList(ref swearTokenList, ref swearTokenValues, swearList);
+                CreateTokenList(ref swearTokenList, ref swearTokenValues, swearList, false);
                 ParseInput(final, ref swearTokenList);
-                ConfirmPotentialMatches(final, swearTokenList, ref replaceList, swearList);
-                final = ReplaceMatches(final, ref replaceList, swearList);
+                ConfirmPotentialMatches(final, swearTokenList, ref replaceList, swearList, false);
+                final = ReplaceMatches(final, ref replaceList, swearList, false);
             }
 
             //temp
@@ -263,48 +205,6 @@ namespace PhoneTranslate
         /// Checks each PotentialsList in ReplaceToken to see if it exists in CheckForList.
         /// </summary>
         /// <param name="input"></param>
-        public void ConfirmPotentialMatches(string input, List<PotentialToken> tkl, ref List<ConfirmToken> confirms, List<WordObject> wordList)
-        {
-            //go through the list of the potential tokens, 
-            //take the start point, find the string between that and the next empty space
-            //compare that string against the referenceList with both sides forced to lower case
-            //if it matches, replace and exit to go test next potential.
-
-            //replacements need to be done back to front otherwise the locations would get shifted 
-            //to be done front to back you need a shunt value that updates on every replace with the diference in letters between the slang and the replacement
-            input = (/*"^ " +*/ input + " ^");
-            input = input.ToLower();
-            input = input.Replace("\n", "\n ");
-
-            for (int i = 0; i < tkl.Count; i++)
-            {
-                PotentialToken token = tkl[i];
-
-                for (int j = 0; j < token.PotentialsList.Count; j++)
-                {
-                    int potential = token.PotentialsList[j];
-
-                    //find next whitespace
-                    //compare
-                    //so you have to do +2 to get the right point (temp siabled)
-                    int nextWhiteSpace = input.IndexOf(" ", potential);
-                    int gapCount = nextWhiteSpace - (potential - 1);
-                    string check = input.Substring(potential, gapCount);
-
-                    //what does this doooooo!?
-                    for (int k = 0; k < token.ReferenceList.Count; k++)
-                    {
-                        int reference = token.ReferenceList[k];
-                        if (check.Contains(wordList[reference].SlangWord))
-                        {
-                            //you have a match. now you make a confirm token and put it in the change list
-                            confirms.Add(new ConfirmToken(potential, reference));
-                            break;
-                        }
-                    }
-                }
-            }
-        }
         public void ConfirmPotentialMatches(string input, List<PotentialToken> tkl, ref List<ConfirmToken> confirms, List<WordObject> wordList, bool reversed)
         {
             //go through the list of the potential tokens, 
@@ -338,25 +238,14 @@ namespace PhoneTranslate
                     for (int k = 0; k < token.ReferenceList.Count; k++)
                     {
                         int reference = token.ReferenceList[k];
-                        if(reversed)
+                        string word = reversed ? wordList[reference].TranslatedWord : wordList[reference].SlangWord;
+
+                        if (check.Contains(word))
                         {
-                            if (check.Contains(wordList[reference].TranslatedWord))
-                            {
-                                //you have a match. now you make a confirm token and put it in the change list
-                                confirms.Add(new ConfirmToken(potential, reference));
-                                break;
-                            }
+                            //you have a match. now you make a confirm token and put it in the change list
+                            confirms.Add(new ConfirmToken(potential, reference));
+                            break;
                         }
-                        else
-                        {
-                            if (check.Contains(wordList[reference].SlangWord))
-                            {
-                                //you have a match. now you make a confirm token and put it in the change list
-                                confirms.Add(new ConfirmToken(potential, reference));
-                                break;
-                            }
-                        }
-                        
                     }
                 }
             }
@@ -440,59 +329,38 @@ namespace PhoneTranslate
             }
         }
 
-        public string ReplaceMatches(string input, ref List<ConfirmToken> list, List<WordObject> slanglist)
-        {
-            for (int i = (list.Count - 1); i >= 0; i--)
-            {
-                ConfirmToken token = list[i];
 
-                //do the replacing. you start at -1 from count as that is the end val 
-                //input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
-                input = input.Replace("\n", "\n "); //this works, but is bad coding, find the reason, think man.
-                //take out the slang word
-                input = input.Remove(token.LocationValue, slanglist[token.CheckListLocation].SlangWord.Count());
-                //fill in the new word
-                input = input.Insert(token.LocationValue, slanglist[token.CheckListLocation].TranslatedWord);
-
-                input = input.Replace("\n ", "\n"); //this is the fix to the above replace
-            }
-
-            return input;
-        }
-        public string ReplaceMatches(string input, ref List<ConfirmToken> list, List<WordObject> slanglist, bool reversed)
+        public string ReplaceMatches(string input, ref List<ConfirmToken> tokens, List<WordObject> slanglist, bool reversed)
         {
 
             if(reversed)
             {
-                for (int i = (list.Count - 1); i >= 0; i--)
+                for (int i = (tokens.Count - 1); i >= 0; i--)
                 {
-                    ConfirmToken token = list[i];
-
                     //do the replacing. you start at -1 from count as that is the end val 
                     //input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
 
                     //take out the slang word
-                    input = input.Remove(token.LocationValue, slanglist[token.CheckListLocation].TranslatedWord.Count());
+                    input = input.Remove(tokens[i].LocationValue, slanglist[tokens[i].CheckListLocation].TranslatedWord.Count());
                     //fill in the new word
-                    input = input.Insert(token.LocationValue, slanglist[token.CheckListLocation].SlangWord);
+                    input = input.Insert(tokens[i].LocationValue, slanglist[tokens[i].CheckListLocation].SlangWord);
                 }
             }
             else
             {
-                for (int i = (list.Count - 1); i >= 0; i--)
+                for (int i = (tokens.Count - 1); i >= 0; i--)
                 {
-                    ConfirmToken token = list[i];
-
                     //do the replacing. you start at -1 from count as that is the end val 
                     //input = input.Replace(slanglist[list[i].CheckListLocation].SlangWord, slanglist[list[i].CheckListLocation].TranslatedWord);
-
+                    input = input.Replace("\n", "\n "); //this works, but is bad coding, find the reason, think man.
                     //take out the slang word
-                    input = input.Remove(token.LocationValue, slanglist[token.CheckListLocation].SlangWord.Count());
+                    input = input.Remove(tokens[i].LocationValue, slanglist[tokens[i].CheckListLocation].SlangWord.Count());
                     //fill in the new word
-                    input = input.Insert(token.LocationValue, slanglist[token.CheckListLocation].TranslatedWord);
+                    input = input.Insert(tokens[i].LocationValue, slanglist[tokens[i].CheckListLocation].TranslatedWord);
+
+                    input = input.Replace("\n ", "\n"); //this is the fix to the above replace
                 }
             }
-            
 
             return input;
         }
