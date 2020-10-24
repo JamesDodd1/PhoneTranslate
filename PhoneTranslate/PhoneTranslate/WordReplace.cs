@@ -73,16 +73,16 @@ namespace PhoneTranslate
         /// </summary>
         public void CreateTokenList(ref List<PotentialToken> tokens, ref string values, List<WordObject> wordList, bool reversed)
         {
-            
+
             //this is so you can run it again after startup
             tokens.Clear();
             values = "";
 
-            
+
             for (int i = 0; i < wordList.Count(); i++)
             {
                 char firstLetter = reversed ? wordList[i].TranslatedWord.ToLower()[0] : wordList[i].SlangWord.ToLower()[0];
-                
+
                 //if first letter of slang is not in the tokenValues list then create a new token.
                 if (!values.Contains(firstLetter))
                 {
@@ -113,11 +113,20 @@ namespace PhoneTranslate
 
             //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
             CreateTokenList(ref tokenList, ref tokenValues, checkForList, reverseTranslate);
-
             //parse the text 
             ParseInput(inputstring, ref tokenList);
-            //find the ones that need replacing
-            ConfirmPotentialPhrasicMatches(inputstring, tokenList, ref replaceList, checkForList, reverseTranslate);
+
+            if (reverseTranslate)
+            {
+                //find the ones that need replacing
+                ConfirmPotentialPhrasicMatches(inputstring, tokenList, ref replaceList, checkForList, reverseTranslate);
+            }
+            else
+            {
+                //find the ones that need replacing
+                ConfirmPotentialMatches(inputstring, tokenList, ref replaceList, checkForList, reverseTranslate);
+            }
+
             //this is the fix, making sure that you replace from the back, buy ordering the list
             replaceList = ArrangeList(replaceList);
             //replace the matches (going from end to start)
@@ -158,7 +167,7 @@ namespace PhoneTranslate
 
             //find all of the /n and then add a space after them, then at the end, remove that space
             input = input.Replace("\n", "\n ");
-            
+
 
             string reloadInput = input;
 
@@ -167,7 +176,7 @@ namespace PhoneTranslate
             for (int i = 0; i < tkl.Count; i++)
             {
                 bool found = true;
-                
+
                 //if it has a token
                 while (found)
                 {
@@ -192,7 +201,7 @@ namespace PhoneTranslate
                     {
                         found = false;
                     }
-                    
+
                 }
                 input = reloadInput;
                 shunt = 0;
@@ -291,7 +300,7 @@ namespace PhoneTranslate
                         if (wordList[reference].TranslatedWord.Count() <= input.Count())
                         {
                             checkcount = wordList[reference].TranslatedWord.Count();
-                            if (input.Count()> (checkcount + potential))
+                            if (input.Count() > (checkcount + potential))
                             {
                                 check = input.Substring(potential, checkcount);
 
@@ -314,15 +323,15 @@ namespace PhoneTranslate
                                     }
                                 }
                             }
-                            
-                                
 
-                            
+
+
+
 
                         }
-                        
 
-                        
+
+
 
                     }
                 }
@@ -333,7 +342,7 @@ namespace PhoneTranslate
         public string ReplaceMatches(string input, ref List<ConfirmToken> tokens, List<WordObject> slanglist, bool reversed)
         {
 
-            if(reversed)
+            if (reversed)
             {
                 for (int i = (tokens.Count - 1); i >= 0; i--)
                 {
@@ -365,16 +374,17 @@ namespace PhoneTranslate
             return input;
         }
 
+
         public List<ConfirmToken> ArrangeList(List<ConfirmToken> tboList)
         {
             List<ConfirmToken> orderedList = new List<ConfirmToken>();
-            while(tboList.Count() > 0)
+            while (tboList.Count() > 0)
             {
                 int lowest = 777;
                 int lowestVal = 777;
                 for (int i = 0; i < tboList.Count(); i++)
                 {
-                    
+
 
                     if (tboList[i].LocationValue < lowest)
                     {
@@ -392,7 +402,7 @@ namespace PhoneTranslate
                     }
                 }
             }
-            
+
 
             tboList = orderedList;
             return tboList;
