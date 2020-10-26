@@ -251,8 +251,8 @@ namespace PhoneTranslate
                         orderedList.Add(tboList[lowestVal]);
                         tboList.Remove(tboList[lowestVal]);
 
-                        lowest = 777;
-                        lowestVal = 777;
+                        lowest = 777777777;
+                        lowestVal = 777777777;
                     }
                 }
             }
