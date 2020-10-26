@@ -55,6 +55,7 @@ namespace PhoneTranslate
         public string RunReplace(string inputstring, bool swearFilter, bool reverseTranslate)
         {
             List<ConfirmToken> replaceList = new List<ConfirmToken>();
+            replaceList.Clear();
 
             //this would be needed if it is not the first run you have made. Probably need to split the potentials tokens up
             CreateTokenList(ref tokenList, slangToWord, reverseTranslate);
