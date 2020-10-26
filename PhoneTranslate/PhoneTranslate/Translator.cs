@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneTranslate.Crud;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +14,13 @@ namespace PhoneTranslate
     public partial class Translator : Form
     {
         private SaveLoad sl = new SaveLoad();
+        private WordReplace wr = new WordReplace();
 
 
         /// <summary> Initialises a new instance of Translator </summary>
         public Translator()
         {
             InitializeComponent();
-            //new Dictionary.Crud(@"Dictionary").Add("afk", "away from keyboard");
         }
 
 
@@ -31,8 +32,6 @@ namespace PhoneTranslate
             if (text == "") { MessageBox.Show("Nothing entered"); }
             if (text.Length > 150) { }
 
-
-            WordReplace wr = new WordReplace();
 
             inputField.Text = "";
             //outputField.Text = wr.WordMatch(text);

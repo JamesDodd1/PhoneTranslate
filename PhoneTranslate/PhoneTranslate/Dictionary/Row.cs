@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneTranslate.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,7 +74,7 @@ namespace PhoneTranslate.Dictionary
         /// <summary> Save changes to dictionary </summary>
         public void Save()
         {
-            Crud dictionary = DictionaryFactory.GetFile("Dictionary");
+            Translate dictionary = FileFactory.GetFile("Dictionary");
 
             Cell slang = this.Items[0];
             Cell translated = this.Items[1];

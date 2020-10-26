@@ -7,5 +7,5 @@ C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\Pho
 C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.exe
 C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.pdb
 C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.Translator.resources
-C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.csprojAssemblyReference.cache
 C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.Dictionary.Dictionary.resources
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslate\obj\Debug\PhoneTranslate.csprojAssemblyReference.cache
