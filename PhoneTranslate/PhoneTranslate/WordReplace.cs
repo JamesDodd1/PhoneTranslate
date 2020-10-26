@@ -236,8 +236,8 @@ namespace PhoneTranslate
             List<ConfirmToken> orderedList = new List<ConfirmToken>();
             while (tboList.Count() > 0)
             {
-                int lowest = 777;
-                int lowestVal = 777;
+                int lowest = 777777777;
+                int lowestVal = 777777777;
                 for (int i = 0; i < tboList.Count(); i++)
                 {
                     if (tboList[i].LocationValue < lowest)
