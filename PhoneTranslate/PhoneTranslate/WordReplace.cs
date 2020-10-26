@@ -16,6 +16,8 @@ namespace PhoneTranslate
         private Dictionary<char, PotentialToken> tokenList = new Dictionary<char, PotentialToken>();
         private Dictionary<char, PotentialToken> swearTokenList = new Dictionary<char, PotentialToken>();
 
+        private List<CheckToken> potentialList = new List<CheckToken>();
+
 
         public WordReplace()
         {
@@ -150,7 +152,10 @@ namespace PhoneTranslate
                 {
                     //add location of first match to potential list
                     int firstLocation = input.IndexOf(" " + token.Key);
-                    token.Value.PotentialsList.Add(firstLocation + shunt);
+                    //token.Value.PotentialsList.Add(firstLocation + shunt);
+                    potentialList.Add(new CheckToken((firstLocation + shunt), token.Key));
+                    
+
 
                     //remove already checked area from input
                     input = input.Remove(firstLocation, 2);
@@ -184,9 +189,9 @@ namespace PhoneTranslate
 
             foreach (KeyValuePair<char, PotentialToken> token in tokens)
             {
-                for (int j = 0; j < token.Value.PotentialsList.Count; j++)
+                for (int j = 0; j < potentialList.Count; j++)
                 {
-                    int potential = token.Value.PotentialsList[j];
+                    int potential = potentialList[j].inputLocation;
 
                     if (reversed)
                     {
@@ -302,18 +307,29 @@ namespace PhoneTranslate
         public Dictionary<string, string> TokenTranslations { get; private set; }
 
         //every time you find a potential by matching the token, you put the start location in this list
-        public List<int> PotentialsList { get; private set; }
+        //public List<int> PotentialsList { get; private set; }
 
 
         public PotentialToken(string key, string value)
         {
-            PotentialsList = new List<int>();
+            //PotentialsList = new List<int>();
             TokenTranslations = new Dictionary<string, string>();
 
             TokenTranslations.Add(key, value);
         }
     }
 
+    public struct CheckToken
+    {
+        public int inputLocation { get; private set; }
+        public char keyValue { get; private set; }
+
+        public CheckToken(int input, char key)
+        {
+            inputLocation = input;
+            keyValue = key;
+        }
+    }
 
     public struct ConfirmToken
     {
