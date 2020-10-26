@@ -52,3 +52,6 @@ tata for now
 ttyl
 talk to you later
 
+xp
+experience point
+
