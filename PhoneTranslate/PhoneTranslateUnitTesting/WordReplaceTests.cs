@@ -15,9 +15,9 @@ namespace PhoneTranslateUnitTesting
         [DataRow("damn", "damn")]
         public void RunReplace_SlangToWordNoSwearFilter_ReturnsCorrectTranslation(string input, string actual)
         {
-            var wordReplace = new WordReplace();
             const bool swearFilter = false;
             const bool wordToSlang = false;
+            var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
 
@@ -33,9 +33,9 @@ namespace PhoneTranslateUnitTesting
         [DataRow("damn", "d***")]
         public void RunReplace_SlangToWordWithSwearFilter_ReturnsCorrectTranslation(string input, string actual)
         {
-            var wordReplace = new WordReplace();
             const bool swearFilter = true;
             const bool wordToSlang = false;
+            var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
 
@@ -51,9 +51,9 @@ namespace PhoneTranslateUnitTesting
         [DataRow("damn", "damn")]
         public void RunReplace_WordToSlandNoSwearFilter_ReturnsCorrectTranslation(string input, string actual)
         {
-            var wordReplace = new WordReplace();
             const bool swearFilter = false;
             const bool wordToSlang = true;
+            var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
 
@@ -69,9 +69,9 @@ namespace PhoneTranslateUnitTesting
         [DataRow("d***", "d***")]
         public void RunReplace_WordToSlandWithSwearFilter_ReturnsCorrectTranslation(string input, string actual)
         {
-            var wordReplace = new WordReplace();
             const bool swearFilter = true;
             const bool wordToSlang = true;
+            var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
 
