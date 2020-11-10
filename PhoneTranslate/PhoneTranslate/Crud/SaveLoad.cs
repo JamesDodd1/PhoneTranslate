@@ -17,7 +17,7 @@ namespace PhoneTranslate.Crud
         /// <summary> Initalises a new instance of SaveLoad </summary>
         public SaveLoad() 
         {
-            this.filePath = @".\..\..\files\";
+            this.filePath = @".\..\..\..\PhoneTranslate\files\";
             this.fileType = @".txt";
         }
 

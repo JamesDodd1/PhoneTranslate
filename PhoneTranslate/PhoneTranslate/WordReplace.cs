@@ -51,19 +51,19 @@ namespace PhoneTranslate
         /// </summary>
         /// <param name="input"> The text you want to run the replace through </param>
         /// <param name="swearFilter"> Is the swear filter checked </param>
-        /// <param name="reverseTranslate"> is the Reverse translate checked </param>
+        /// <param name="wordToSlang"> is the Reverse translate checked </param>
         /// <returns></returns>
-        public string RunReplace(string input, bool swearFilter, bool reverseTranslate)
+        public string RunReplace(string input, bool swearFilter, bool wordToSlang)
         {
             this.potentialList = new List<PotentialToken>();
             this.replaceList = new List<ConfirmToken>();
             
             // Slang to word translation
-            string output = Replace(input, this.tokenList, this.slangToWord, reverseTranslate);
+            string output = Replace(input, this.tokenList, this.slangToWord, wordToSlang);
 
             // Swear to filer translation
-            if (swearFilter)
-                output = Replace(input, this.swearTokenList, this.swearToFilter, false);
+            if (swearFilter && !wordToSlang)
+                output = Replace(output, this.swearTokenList, this.swearToFilter, false);
 
             return output;
         }

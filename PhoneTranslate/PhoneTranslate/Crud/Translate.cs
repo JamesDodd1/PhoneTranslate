@@ -18,7 +18,7 @@ namespace PhoneTranslate.Crud
         public Translate(string file) 
         {
             this.fileName = file;
-            this.file = @".\..\..\files\" + fileName + @".txt";
+            this.file = @".\..\..\..\PhoneTranslate\files\" + file + @".txt";
         }
 
 

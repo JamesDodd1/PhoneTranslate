@@ -1,0 +1,17 @@
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\PhoneTranslateUnitTesting.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\PhoneTranslateUnitTesting.pdb
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\PhoneTranslate.exe
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\PhoneTranslate.pdb
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\PhoneTranslate.exe.config
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\obj\Debug\PhoneTranslateUnitTesting.csprojAssemblyReference.cache
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\obj\Debug\PhoneTranslateUnitTesting.csproj.CoreCompileInputs.cache
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\obj\Debug\PhoneTranslateUnitTesting.csproj.CopyComplete
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\obj\Debug\PhoneTranslateUnitTesting.dll
+C:\Users\james\GitHub\PhoneTranslate\PhoneTranslate\PhoneTranslateUnitTesting\obj\Debug\PhoneTranslateUnitTesting.pdb
