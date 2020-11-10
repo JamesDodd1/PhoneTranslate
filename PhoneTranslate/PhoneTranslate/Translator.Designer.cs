@@ -40,7 +40,7 @@
             this.dictionaryBtn = new System.Windows.Forms.Button();
             this.swearFilter = new System.Windows.Forms.CheckBox();
             this.msgLbl = new System.Windows.Forms.Label();
-            this.ReverseTranslate = new System.Windows.Forms.CheckBox();
+            this.reverseTranslate = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // inputField
@@ -155,7 +155,6 @@
             this.swearFilter.TabIndex = 9;
             this.swearFilter.Text = "Swear Filter";
             this.swearFilter.UseVisualStyleBackColor = true;
-            this.swearFilter.CheckedChanged += new System.EventHandler(this.SwearFilter_CheckedChanged);
             // 
             // msgLbl
             // 
@@ -168,22 +167,22 @@
             this.msgLbl.Text = "Message";
             this.msgLbl.Visible = false;
             // 
-            // ReverseTranslate
+            // reverseTranslate
             // 
-            this.ReverseTranslate.AutoSize = true;
-            this.ReverseTranslate.Location = new System.Drawing.Point(181, 257);
-            this.ReverseTranslate.Name = "ReverseTranslate";
-            this.ReverseTranslate.Size = new System.Drawing.Size(130, 20);
-            this.ReverseTranslate.TabIndex = 11;
-            this.ReverseTranslate.Text = "Reverse Translate";
-            this.ReverseTranslate.UseVisualStyleBackColor = true;
+            this.reverseTranslate.AutoSize = true;
+            this.reverseTranslate.Location = new System.Drawing.Point(181, 257);
+            this.reverseTranslate.Name = "reverseTranslate";
+            this.reverseTranslate.Size = new System.Drawing.Size(130, 20);
+            this.reverseTranslate.TabIndex = 11;
+            this.reverseTranslate.Text = "Reverse Translate";
+            this.reverseTranslate.UseVisualStyleBackColor = true;
             // 
             // Translator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.ReverseTranslate);
+            this.Controls.Add(this.reverseTranslate);
             this.Controls.Add(this.msgLbl);
             this.Controls.Add(this.dictionaryBtn);
             this.Controls.Add(this.swearFilter);
@@ -218,7 +217,7 @@
         private System.Windows.Forms.Button dictionaryBtn;
         private System.Windows.Forms.CheckBox swearFilter;
         private System.Windows.Forms.Label msgLbl;
-        private System.Windows.Forms.CheckBox ReverseTranslate;
+        private System.Windows.Forms.CheckBox reverseTranslate;
     }
 }
 

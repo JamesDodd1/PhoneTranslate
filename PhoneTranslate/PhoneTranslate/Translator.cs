@@ -13,8 +13,8 @@ namespace PhoneTranslate
 {
     public partial class Translator : Form
     {
-        private SaveLoad sl = new SaveLoad();
-        private WordReplace wr = new WordReplace();
+        private SaveLoad saveLoad = new SaveLoad();
+        private WordReplace wordReplace = new WordReplace();
 
 
         /// <summary> Initialises a new instance of Translator </summary>
@@ -29,15 +29,15 @@ namespace PhoneTranslate
         {
             string text = inputField.Text.Trim();
 
-            if (text == "") { MessageBox.Show("Nothing entered"); }
-            if (text.Length > 150) { }
+            if (text == null || text == "") 
+            { 
+                MessageBox.Show("Nothing entered");
+                return;
+            }
+            //if (text.Length > 150) { }
 
 
-            inputField.Text = "";
-            //outputField.Text = wr.WordMatch(text);
-            outputField.Text = wr.RunReplace(text, swearFilter.Checked, ReverseTranslate.Checked);
-            //ReverseTranslate.Checked
-
+            outputField.Text = wordReplace.RunReplace(text, swearFilter.Checked, reverseTranslate.Checked);
             msgLbl.Text = "Complete";
         }
 
@@ -54,23 +54,20 @@ namespace PhoneTranslate
         /// <summary> Saves text into a file </summary>
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            string fileName = SelectedFile();
-            if (fileName == "" || fileName == null)
+            string fileName = SelectedFile(); // Retrieve selected file's name
+
+            // No file found
+            if (fileName == null || fileName == "")
                 return;
 
-            DisplayText dt = new DisplayText
+
+            DisplayText text = new DisplayText
             {
                 Input = inputField.Text,
                 Output = outputField.Text,
             };
-            string msg = "";
 
-            if (this.sl.Save(fileName, dt))
-                msg = "Saved";
-            else
-                msg = "Failed";
-
-            msgLbl.Text = msg;
+            msgLbl.Text = this.saveLoad.Save(fileName, text) ? "Text has been saved" : "Unable to save";
         }
 
 
@@ -80,12 +77,11 @@ namespace PhoneTranslate
             string fileName = SelectedFile(); // Retrieve selected file's name
 
             // No file found
-            if (fileName == "" || fileName == null) 
+            if (fileName == null || fileName == "")
                 return;
 
            
-            DisplayText text = this.sl.Load(fileName); // Retrieve file's saved data
-            string msg = "";
+            DisplayText text = this.saveLoad.Load(fileName); // Retrieve file's saved data
 
             // Display saved text in TextBoxes
             if (text != null)
@@ -93,12 +89,10 @@ namespace PhoneTranslate
                 inputField.Text = text.Input;
                 outputField.Text = text.Output;
 
-                msg = "Loaded";
+                msgLbl.Text = "Loaded from file";
             }
             else
-                msg = "Fail";
-
-            msgLbl.Text = msg;
+                msgLbl.Text = "Unable to load";
         }
 
 
@@ -134,12 +128,6 @@ namespace PhoneTranslate
             this.Hide();
             new Dictionary.Dictionary().ShowDialog();
             this.Show();
-        }
-        
-            
-        private void SwearFilter_CheckedChanged(object sender, EventArgs e)
-        {
-            
         }
     }
 
