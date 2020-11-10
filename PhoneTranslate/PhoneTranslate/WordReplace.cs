@@ -45,7 +45,6 @@ namespace PhoneTranslate
         }
 
 
-        //The actual replace command to call from outside
         /// <summary>
         /// Replaces text from the input using the dictionary as reference
         /// </summary>
@@ -55,6 +54,8 @@ namespace PhoneTranslate
         /// <returns></returns>
         public string RunReplace(string input, bool swearFilter, bool wordToSlang)
         {
+            if (input == null || input == "") { return ""; }
+
             this.potentialList = new List<PotentialToken>();
             this.replaceList = new List<ConfirmToken>();
             

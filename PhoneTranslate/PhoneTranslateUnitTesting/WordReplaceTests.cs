@@ -8,8 +8,7 @@ namespace PhoneTranslateUnitTesting
     public class WordReplaceTests
     {
         [DataTestMethod]
-        [DataRow("", "")]
-        [DataRow("abc", "abc")]
+        [DataRow("example", "example")]
         [DataRow("afk", "away from keyboard")]
         [DataRow("afk brb\nimo", "away from keyboard be right back\nin my opinion")]
         [DataRow("damn", "damn")]
@@ -17,6 +16,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = false;
             const bool wordToSlang = false;
+
             var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
@@ -26,8 +26,7 @@ namespace PhoneTranslateUnitTesting
 
 
         [DataTestMethod]
-        [DataRow("", "")]
-        [DataRow("abc", "abc")]
+        [DataRow("example", "example")]
         [DataRow("afk", "away from keyboard")]
         [DataRow("afk brb\nimo", "away from keyboard be right back\nin my opinion")]
         [DataRow("damn", "d***")]
@@ -35,6 +34,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = true;
             const bool wordToSlang = false;
+
             var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
@@ -44,8 +44,7 @@ namespace PhoneTranslateUnitTesting
 
 
         [DataTestMethod]
-        [DataRow("", "")]
-        [DataRow("abc", "abc")]
+        [DataRow("example", "example")]
         [DataRow("away from keyboard", "afk")]
         [DataRow("away from keyboard be right back\nin my opinion", "afk brb\nimo")]
         [DataRow("damn", "damn")]
@@ -53,6 +52,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = false;
             const bool wordToSlang = true;
+
             var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
@@ -62,8 +62,7 @@ namespace PhoneTranslateUnitTesting
 
 
         [DataTestMethod]
-        [DataRow("", "")]
-        [DataRow("abc", "abc")]
+        [DataRow("example", "example")]
         [DataRow("away from keyboard", "afk")]
         [DataRow("away from keyboard be right back in my opinion", "afk brb imo")]
         [DataRow("d***", "d***")]
@@ -71,6 +70,24 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = true;
             const bool wordToSlang = true;
+
+            var wordReplace = new WordReplace();
+
+            var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
+
+            Assert.AreEqual(actual, result, true);
+        }
+
+
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        public void RunReplace_InputIsNullOrEmpty_ReturnsEmptyString(string input)
+        {
+            const bool swearFilter = false;
+            const bool wordToSlang = false;
+            const string actual = "";
+
             var wordReplace = new WordReplace();
 
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
