@@ -16,6 +16,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = false;
             const bool wordToSlang = false;
+            AddTestTranslations();
 
             var wordReplace = new WordReplace();
 
@@ -34,6 +35,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = true;
             const bool wordToSlang = false;
+            AddTestTranslations();
 
             var wordReplace = new WordReplace();
 
@@ -52,6 +54,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = false;
             const bool wordToSlang = true;
+            AddTestTranslations();
 
             var wordReplace = new WordReplace();
 
@@ -70,6 +73,7 @@ namespace PhoneTranslateUnitTesting
         {
             const bool swearFilter = true;
             const bool wordToSlang = true;
+            AddTestTranslations();
 
             var wordReplace = new WordReplace();
 
@@ -93,6 +97,18 @@ namespace PhoneTranslateUnitTesting
             var result = wordReplace.RunReplace(input, swearFilter, wordToSlang);
 
             Assert.AreEqual(actual, result, true);
+        }
+
+
+        private void AddTestTranslations()
+        {
+            var dictionary = PhoneTranslate.Crud.FileFactory.GetFile("Dictionary");
+            var swearWords = PhoneTranslate.Crud.FileFactory.GetFile("SwearWords");
+
+            dictionary.Add("afk", "away from keyboard");
+            dictionary.Add("brb", "be right back");
+            dictionary.Add("imo", "in my opinion");
+            swearWords.Add("damn", "d***");
         }
     }
 }
