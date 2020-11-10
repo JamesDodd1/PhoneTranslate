@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace PhoneTranslate.Crud
 {
-    class SaveLoad
+    public class SaveLoad
     {
         private string filePath, fileType;
 
@@ -39,11 +38,11 @@ namespace PhoneTranslate.Crud
                     output = reader.ReadLine();
                 }
 
-                return new DisplayText
-                {
-                    Input = input,
-                    Output = output,
-                };
+                return new DisplayText { Input = input, Output = output };
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("{0} file doesn't exist", fileName);
             }
             catch (System.ArgumentNullException)
             {
@@ -64,9 +63,12 @@ namespace PhoneTranslate.Crud
         {
             string file = this.filePath + fileName + this.fileType;
 
+            if (text == null) { return false; }
+            if (!File.Exists(file)) { return false; }
+
             try
             {
-                // Writes to file
+                // Write to file
                 using (StreamWriter writer = new StreamWriter(file))
                 {
                     writer.WriteLine(text.Input);

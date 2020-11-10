@@ -49,6 +49,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crud\TranslateTests.cs" />
+    <Compile Include="Crud\SaveLoadTests.cs" />
+    <Compile Include="Crud\FileFactoryTests.cs" />
     <Compile Include="WordReplaceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

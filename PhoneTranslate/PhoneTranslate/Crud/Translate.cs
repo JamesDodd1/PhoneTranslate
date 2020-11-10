@@ -51,9 +51,13 @@ namespace PhoneTranslate.Crud
                     }
                 }
             }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("{0} file doesn't exist", this.fileName);
+            }
             catch (System.ArgumentNullException)
             {
-                Console.WriteLine("{0} variable is null", nameof(this.file));
+                Console.WriteLine("{0} variable is null", nameof(this.fileName));
             }
             catch (System.ArgumentException)
             {
@@ -66,15 +70,18 @@ namespace PhoneTranslate.Crud
 
         /// <summary> Adds a new translation into the dictionary </summary>
         /// <returns> true if successful, otherwise false </returns>
-        public bool Add(string word, string translated)
+        public bool Add(string word, string translation)
         {
+            if (word == null || word == "") { return false; }
+            if (translation == null || translation == "") { return false; }
+
             List<WordObject> dictionary = Read();
 
             // Translation already exists
-            if (dictionary.Where(d => d.SlangWord == word && d.TranslatedWord == translated) != null) 
+            if (dictionary.Count(d => d.SlangWord == word && d.TranslatedWord == translation) != 0) 
                 return false;
 
-            dictionary.Add(new WordObject { SlangWord = word, TranslatedWord = translated, });
+            dictionary.Add(new WordObject { SlangWord = word, TranslatedWord = translation });
 
             // Order alphabetically and rewite dictionary file
             return Write(dictionary.OrderBy(d => d.SlangWord).ToList()); 
@@ -83,8 +90,12 @@ namespace PhoneTranslate.Crud
         
         /// <summary> Changes the dictionary definition of a translation </summary>
         /// <returns> true if successful, otherwise false </returns>
-        public bool Edit(string word, string translated, string newWord, string newTranslated)
+        public bool Edit(string word, string translated, string newWord, string newTranslation)
         {
+            if (newWord == null || newWord == "") { return false; }
+            if (newTranslation == null || newTranslation == "") { return false; }
+
+
             // Find index of current translation
             List<WordObject> dictionary = Read();
             WordObject translation = dictionary.Where(d => d.SlangWord == word && d.TranslatedWord == translated).FirstOrDefault();
@@ -96,7 +107,7 @@ namespace PhoneTranslate.Crud
                 dictionary[index] = new WordObject
                 {
                     SlangWord = newWord,
-                    TranslatedWord = newTranslated,
+                    TranslatedWord = newTranslation,
                 };
 
                 // Order alphabetically and rewrite dictionary file
@@ -109,15 +120,18 @@ namespace PhoneTranslate.Crud
 
         /// <summary> Removes a translation from the dictionary </summary>
         /// <returns> true if successful, otherwise false </returns>
-        public bool Remove(string word, string translated)
+        public bool Remove(string word, string translation)
         {
+            if (word == null || word == "") { return false; }
+            if (translation == null || translation == "") { return false; }
+
+
             List<WordObject> dictionary = Read();
 
             // Rewrite dictionary when removed
-            if (dictionary.RemoveAll(d => d.SlangWord == word && d.TranslatedWord == translated) == 1)
-            {
+            if (dictionary.RemoveAll(d => d.SlangWord == word && d.TranslatedWord == translation) == 1)
                 return Write(dictionary);
-            }
+
 
             return false;
         }
@@ -141,6 +155,10 @@ namespace PhoneTranslate.Crud
                 }
 
                 return true;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("{0} file doesn't exist", nameof(this.fileName));
             }
             catch (System.ArgumentNullException)
             {
