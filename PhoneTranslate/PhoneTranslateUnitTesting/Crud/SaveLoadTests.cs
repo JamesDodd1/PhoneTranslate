@@ -11,8 +11,8 @@ namespace PhoneTranslateUnitTesting.Crud
         [TestMethod]
         public void Load_RetrievesTextFromFile_ReturnsDisplayText()
         {
-            var saveLoad = new SaveLoad();
             const string file = @"Save 1";
+            var saveLoad = new SaveLoad();
 
             var result = saveLoad.Load(file);
 
@@ -36,26 +36,25 @@ namespace PhoneTranslateUnitTesting.Crud
         [TestMethod]
         public void Save_SaveToFile_ReturnsTrue()
         {
-            var saveLoad = new SaveLoad();
             const string file = @"Save 1";
             DisplayText text = new DisplayText { Input = "", Output = "" };
+            
+            var saveLoad = new SaveLoad();
             var previousSave = saveLoad.Load(file); // Store original saved data
 
             var result = saveLoad.Save(file, text);
 
             Assert.IsTrue(result);
-
-
-            // Restore previous save
-            saveLoad.Save(file, previousSave);
+            
+            saveLoad.Save(file, previousSave); // Restore previous save
         }
 
         
         [TestMethod]
         public void Save_DisplayTextValueIsNull_ReturnFalse()
         {
-            var saveLoad = new SaveLoad();
             const string file = @"Save 1";
+            var saveLoad = new SaveLoad();
 
             var result = saveLoad.Save(file, null);
 
