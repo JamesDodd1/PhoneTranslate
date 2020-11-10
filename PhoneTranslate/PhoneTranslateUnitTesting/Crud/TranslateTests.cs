@@ -42,29 +42,25 @@ namespace PhoneTranslateUnitTesting.Crud
 
             Assert.IsTrue(result);
 
-
-            // Undo insert
-            translate.Remove("newWord", "newTranslation");
+            translate.Remove("newWord", "newTranslation"); // Remove test translation
         }
 
 
         [TestMethod]
-        public void Add_TranslationExists_ReturnsFalse()
+        public void Add_TranslationAlreadyExists_ReturnsFalse()
         {
             const string file = @"Dictionary";
-            var translate = new Translate(file);
-
             const string existingWord = "Existing Word";
             const string existingTranslation = "Existing Translation";
-            translate.Add(existingWord, existingTranslation); // Create example translation
-
+            
+            var translate = new Translate(file);
+            translate.Add(existingWord, existingTranslation); // Create test translation
+            
             var result = translate.Add(existingWord, existingTranslation);
 
             Assert.IsFalse(result);
 
-            
-            // Undo insert
-            translate.Remove(existingWord, existingTranslation); 
+            translate.Remove(existingWord, existingTranslation); // Remove test translation
         }
 
 
@@ -101,22 +97,19 @@ namespace PhoneTranslateUnitTesting.Crud
         public void Edit_UpdateTranslation_ReturnsTrue()
         {
             const string file = @"Dictionary";
-            var translate = new Translate(file);
-
             const string word = "Unedited Word";
             const string translation = "Unedited Translation";
-            translate.Add(word, translation); // Create example translation
-
             const string newWord = "Edited Word";
             const string newTranslation = "Edited Translation";
-
+            
+            var translate = new Translate(file);
+            translate.Add(word, translation); // Create test translation
+            
             var result = translate.Edit(word, translation, newWord, newTranslation);
 
             Assert.IsTrue(result);
 
-
-            // Undo insert
-            translate.Remove(newWord, newTranslation);
+            translate.Remove(newWord, newTranslation); // Remove test translation
         }
 
 
@@ -165,12 +158,12 @@ namespace PhoneTranslateUnitTesting.Crud
         public void Remove_DeleteFromFile_ReturnsTrue()
         {
             const string file = @"Dictionary";
-            var translate = new Translate(file);
-
             const string word = "Yet To Be Removed Word";
             const string translation = "Yet To Be Removed Translation";
-            translate.Add(word, translation);
-
+            
+            var translate = new Translate(file);
+            translate.Add(word, translation); // Create test translation
+            
             var result = translate.Remove(word, translation);
 
             Assert.IsTrue(result);
