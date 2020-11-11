@@ -4,12 +4,12 @@ The purpose of this application is to convert text between SMS slang and English
 
 
 ## Table of Contents
-1. [General Info](#1-general-info)
-2. [Technologies](#2-technologies)
-3. [Features](#3-features)
-4. [Status](#4-status)
-5. [Inspiration](#5-inspiration)
-6. [Contributors](#6-contributors)
+__1.__ [General Info](#1-general-info) <br />
+__2.__ [Technologies](#2-technologies) <br />
+__3.__ [Features](#3-features) <br />
+__4.__ [Status](#4-status) <br />
+__5.__ [Inspiration](#5-inspiration) <br />
+__6.__ [Contributors](#6-contributors) <br />
 
 
 ## 1. General Info
@@ -41,5 +41,5 @@ While sorting through old projects, I discovered my GCSE IT programming coursewo
 
 
 ## 6. Contributors
-[James Dodd](github.com/JamesDodd1) \n
+[James Dodd](github.com/JamesDodd1) <br />
 [Jonathan Mead](github.com/Jonathan-D-M)
