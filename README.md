@@ -1,7 +1,19 @@
 # Phone Text Translator
 
+The purpose of this application is designed to convert text between SMS slang and English.
+
+
+## Table of Contents
+- [General Info](#general-info)
+- [Technologies](#technologies)
+- [Features](#features)
+- [Status](#status)
+- [Inspiration](#inspiration)
+- [Contributors](#contributors)
+
+
 ## General Info
-The purpose of the application is to recieve an input text message and convert any SMS text abbreviations into English, then output the result.
+This program converts the message the user has entered into the input field and translates the text where possible and displays it into the output field.  All possible translation options are stored within text files within the project. 
 
 
 ## Technologies
@@ -29,6 +41,5 @@ While sorting through old projects, I discovered my GCSE IT programming coursewo
 
 
 ## Contributors
-[James Dodd](github.com/JamesDodd1)
-
-[Jonathan Mead](github.com/Jonathan-D-M)
+- [James Dodd](github.com/JamesDodd1)
+- [Jonathan Mead](github.com/Jonathan-D-M)
