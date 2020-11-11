@@ -27,7 +27,7 @@ C# in .NET Framework (ver 16.7.7)
 - Text can be saved and loaded 
 - Dictionary containing a list of possible translations
 
-### To do
+#### To do
 - Allow dictionary to add and remove possible translation from file
 - View swear word translations within dictionary
 
