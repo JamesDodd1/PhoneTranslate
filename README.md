@@ -7,6 +7,7 @@ The purpose of this application is to convert text between SMS slang and English
 1. [General Info](#1-general-info)
 2. [Technologies](#2-technologies)
 3. [Features](#3-features)
+  3.1 [To Do](#3-1-to-do)
 4. [Status](#4-status)
 5. [Inspiration](#5-inspiration)
 6. [Contributors](#6-contributors)
@@ -27,7 +28,7 @@ C# in .NET Framework (ver 16.7.7)
 - Text can be saved and loaded 
 - Dictionary containing a list of possible translations
 
-  ### To do
+### 3.1 To do
 - Allow dictionary to add and remove possible translation from file
 - View swear word translations within dictionary
 
