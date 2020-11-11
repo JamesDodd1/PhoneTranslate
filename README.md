@@ -1,20 +1,17 @@
-# PhoneTranslate
+# Phone Text Translator
 
-Features to add and test
+While sorting through old projects, I discovered my GCSE IT programming coursework, made using Visual Basic.  After looking at the code and noticing how badly designed it was, I decided to recreate it, implementing all the knowledge I had gained through my Degree.
 
-### Transaltion ###
-- Replace slang - **ADDED**
-- Swear filter (check box)- **ADDED**
-- Swap sides (slang to norm, norm to slang)- **ADDED**
+The purpose of the application is to recieve an input text message and convert any SMS text abbreviations into English, then output the result.
 
-- Tokens ignore cases, check against set to lower case, and outputs are correctly capitalised  - **ADDED - Capitalisation to be done in dictionary**
 
-### Saving ###
-- Five save state files - **ADDED**
-- Save and load (~temp or~ permanent => to file) - **ADDED**
-- Togleable character limit (for twitter)
+## Technologies
+C# in .NET Framework (ver 16.7.7)
 
-### Dictionary ###
-- Dictionary file of slang to normal - **ADDED**
-- Add, delete, edit slang dictionary file - **ADDED**
-- Method to change dictionary file on program - **PARTIALLY ADDED**
+
+## Features
+- SMS slang can be translated into English
+- English can be translated into SMS slang
+- Swear word can be censored 
+- Text can be saved and loaded 
+- Dictionary containing a list of possible translations
