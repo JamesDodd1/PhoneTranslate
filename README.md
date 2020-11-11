@@ -4,12 +4,12 @@ The purpose of this application is to convert text between SMS slang and English
 
 
 ## Table of Contents
-1. [General Info](#general-info)
-2. [Technologies](#technologies)
-3. [Features](#features)
-4. [Status](#status)
-5. [Inspiration](#inspiration)
-6. [Contributors](#contributors)
+- [General Info](#1.-general-info)
+2. [Technologies](#2.-technologies)
+3. [Features](#3. features)
+4. [Status](#4. status)
+5. [Inspiration](#5. inspiration)
+6. [Contributors](#6. Contributors)
 
 
 ## 1. General Info
