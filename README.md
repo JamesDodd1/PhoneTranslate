@@ -1,6 +1,6 @@
 # Phone Text Translator
 
-The purpose of this application is designed to convert text between SMS slang and English.
+The purpose of this application is to convert text between SMS slang and English.
 
 
 ## Table of Contents
