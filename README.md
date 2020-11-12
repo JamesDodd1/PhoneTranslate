@@ -17,7 +17,7 @@ This program converts the message the user has entered into the input field and 
 
 
 ## 2. Technologies
-C# in .NET Framework (ver 16.7.7)
+- C# in .NET Framework (ver 16.7.7)
 
 
 ## 3. Features
@@ -41,5 +41,5 @@ While sorting through old projects, I discovered my GCSE IT programming coursewo
 
 
 ## 6. Contributors
-[James Dodd](github.com/JamesDodd1) <br />
-[Jonathan Mead](github.com/Jonathan-D-M)
+[James Dodd](https://github.com/JamesDodd1) <br />
+[Jonathan Mead](https://github.com/Jonathan-D-M)
